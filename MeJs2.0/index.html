@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  
+  *{
+    margin:0;
+    padding:0;
+  }
+  .docs-pictures {
+    width: 500px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  ul{
+    list-style-type: none;
+  }
+  .docs-pictures li {
+    width: 250px;
+    height: 150px;
+    float: left;
+  }
+  .docs-pictures li img {
+    width: 250px;
+    height: 150px;
+  }
+  </style>
+</head>
+<body>
+  <div style="width: 500px;">
+  <div class="docs-galley" style="position: relative;">
+<ul class="docs-pictures clearfix">
+  <li><img data-index="0" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-1.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-1.jpg" alt="Cuo Na Lake"></li>
+  <li><img data-index="1" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-2.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-2.jpg" alt="Tibetan Plateau"></li>
+  <li><img data-index="2" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-3.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-3.jpg" alt="Jokhang Temple"></li>
+  <li><img data-index="3" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-4.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-4.jpg" alt="Potala Palace 1"></li>
+  <li><img data-index="4" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-5.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-5.jpg" alt="Potala Palace 2"></li>
+  <li><img data-index="5" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-6.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-6.jpg" alt="Potala Palace 3"></li>
+  <li><img data-index="6" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-7.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-7.jpg" alt="Lhasa River"></li>
+  <li><img data-index="7" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-8.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-8.jpg" alt="Namtso 1"></li>
+  <li><img data-index="8" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-9.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-9.jpg" alt="Namtso 2"></li>
+</ul>
+</div>
+</div>
+</body>
+<script>
+  var pictures = document.querySelector('.docs-pictures');
+  var options = {
+    // inline: true,
+    url: 'data-original',
+    inline: true,
+    ready:  function (e) {
+      console.log(e.type);
+    },
+    show:  function (e) {
+      console.log(e.type);
+    },
+    shown:  function (e) {
+      console.log(e.type);
+    },
+    hide:  function (e) {
+      console.log(e.type);
+    },
+    hidden:  function (e) {
+      console.log(e.type);
+    },
+    view:  function (e) {
+      console.log(e.type);
+    },
+    viewed:  function (e) {
+      console.log(e.type);
+      // this.viewer.zoomTo(1).rotateTo(180);
+    }
+  };
+  function addEventListener(element, type, handler) {
+    if (element.addEventListener) {
+      element.addEventListener(type, handler, false);
+    } else if (element.attachEvent) {
+      element.attachEvent('on' + type, handler);
+    }
+  }
+
+  addEventListener(pictures, 'ready', function (e) {
+    console.log(e.type);
+  });
+  addEventListener(pictures, 'show', function (e) {
+    console.log(e.type);
+  });
+  addEventListener(pictures, 'shown', function (e) {
+    console.log(e.type);
+  });
+  addEventListener(pictures, 'hide', function (e) {
+    console.log(e.type);
+  });
+  addEventListener(pictures, 'hidden', function (e) {
+    console.log(e.type);
+  });
+  addEventListener(pictures, 'view', function (e) {
+    console.log(e.type);
+  });
+  addEventListener(pictures, 'viewed', function (e) {
+    console.log(e.type);
+  });
+  var viewer = new me.Viewer(pictures, options);
+  //viewer.destroy();
+</script>
+</html>

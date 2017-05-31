@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--flex布局</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	p{line-height:24px;}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  flex布局
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>flex布局</p>
+		  <p>由于pc端一些古板的浏览器暂时不支持flex的相关属性，本布局建议在移动端应用</p>
+		  <p>布局父容器必须包含属性<b>layout="xxxxx"</b>,将class的定义权限留给开发者自由发挥</p>
+		  <pre>
+&lt;div layout="row center-spread"&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;		  
+		  </pre>
+		   <h4 class="h-title-4" id="code">示例</h4>
+		   <iframe src="flexIframe.html" scrolling="no" frameborder="0" width="865" height="600"></iframe>
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

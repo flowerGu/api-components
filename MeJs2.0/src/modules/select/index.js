@@ -1,0 +1,226 @@
+;(function(me){
+	var clsName = "meUI-select-norm",Zindex = 1000,saveVal={},nodeInfo;
+	//基础样式
+	var meUiSelectNormBastType = "."+clsName+"{box-sizing:border-box;display:inline-block;position:relative;cursor:pointer;border:1px solid "+
+											  "#d9d9d9;border-radius:3px;font-size:14px;color:rgba(0,0,0,0.65);}"+
+								 "."+clsName+"::before{font-size:20px;line-height:20px;font-family:'Ionicons';color:rgba(0,0,0,0.65);content:'\\f3d0';"+
+													  "position:absolute;left:calc(100% - 20px);top:calc(50% - 10px)}"+
+								 "."+clsName+" p{max-width:90%;padding-left:10px;margin:0px;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}"+
+								 "."+clsName+":hover{border-color:#49a9ee;outline:0;}"+
+								 "."+clsName+".showing,"+
+								 "."+clsName+":active{border-color:#49a9ee;outline:0;box-shadow:0 0 0 2px rgba(16,142,233,0.2);}"+	
+								 "."+clsName+" ul{box-sizing:border-box;position:absolute;background:#fff;width:100%;border-radius:"+
+												 "3px;box-shadow:0 1px 6px rgba(0, 0, 0, 0.2);max-height:150px;overflow-y:auto;overflow-x:hidden; display:none;margin:0px;padding:0px;}"+			 
+								 "."+clsName+" ul li{padding:5px 10px;border-bottom:1px solid rgba(0,0,0,0.1);text-align:left;}"+
+								 "."+clsName+" ul li:hover{background:#ecf6fd}"+
+								 "."+clsName+" ul li:last-child{border:none;border-radius:0 0 3px 3px}"+
+								 "."+clsName+" ul li:first-child{border-radius:3px 3px 0 0}"+
+								 "."+clsName+" ul li.disabled{color:rgba(0,0,0,0.25);cursor:not-allowed;}"+
+								 "."+clsName+" ul li.disabled:hover{background:#fff;color:rgba(0,0,0,0.25);cursor:not-allowed;}"+
+								 "."+clsName+" ul li.curs{background-color:#f7f7f7;font-weight:bold;}";
+	
+	//获取select元素的相关信息,width的值加20是三角的宽度
+	function getSelectInfo(){
+		$("select[data-not='true']").css("opacity","0");
+		var info = [],items = $("select[data-not='true']");
+		for(var i=0; i<items.length; i++){
+			if(!$(items[i]).attr("id")){
+				$(items[i]).attr("id",Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 10));
+			}
+			info.push({
+				event:$(items[i]).attr("data-ev") || "click",
+				id:$(items[i]).attr("id"),
+				defaultVal:getSelectDefaultVal($(items[i])).val,
+				defaultAlias:getSelectDefaultVal($(items[i])).alias,
+				index : getSelectDefaultVal($(items[i])).idx,
+				disabled:getSelectDefaultVal($(items[i])).disabled,
+				posL:$(items[i]).offset().left,
+				posT:$(items[i]).offset().top,
+				width:$(items[i]).attr("data-w") || $(items[i]).outerWidth(true) + 20,
+				height:$(items[i]).attr("data-h") || $(items[i]).outerHeight(true),
+				options:getSelectOptions($(items[i]))
+			})
+		}
+		return info;
+	}
+	function getSelectDefaultVal(o){
+		return {
+			val : o.find("option:selected") ? o.find("option:selected").text() :  o.find("option:first").text(),
+			alias : o.find("option:selected") ? o.find("option:selected").val() :  o.find("option:first").val(),
+			idx : o.find("option:selected") ? o.find("option:selected").index() :  o.find("option:first").index(),
+			disabled:o.find("option:disabled") ? o.find("option:disabled").index() : ""
+		}
+	}
+	function getSelectOptions(o){
+		var child = [],opts = o.find("option");
+		for(var i=0; i<opts.length; i++){
+			child.push({"alias":$(opts[i]).val(),"text":$(opts[i]).text()});
+		}
+		return child;
+	}
+	/*
+	替换select元素
+	theme：
+		wrap:对外观的描述--clsName
+		menu:对菜单外观的描述 -- clsName ul
+		item:对菜单项的定义--clsName ul li
+		after:选择后的回调
+	*/
+	function replaceSelect(theme){
+		//style = $.extend(true,{},style,theme || {});//true代表深度拷贝
+		nodeInfo = getSelectInfo();
+		setSelectTheme(theme || {});
+		for(var i in nodeInfo){
+			nodeInfo[i].fn = theme && theme.after || "";
+			nodeInfo[i].scrollType = theme && theme.menu && theme.menu.scrollColor || "#ccc";
+			$("#"+nodeInfo[i].id).replaceWith(creatNode(nodeInfo[i]));
+		}
+	}
+	//设置主题
+	function setSelectTheme(theme){
+		if(!$("#meUiSelectNormBastType").size()){
+			$("head").append("<style id='meUiSelectNormBastType'>"+meUiSelectNormBastType+"</style>");
+		}
+
+		if(!isEmptyObj(theme)){
+			//处理select外观样式
+			if(!isEmptyObj(theme.wrap)){
+				var newsWrapType = "."+clsName+"{";
+				for(var i in theme.wrap){
+					newsWrapType += stringTo(i)+":"+theme.wrap[i]+" !important;";
+				}
+				$("#meUiSelectNormBastType").append(newsWrapType+"}");
+			}	
+			//处理菜单外观样式	
+			if(theme.menu && !isEmptyObj(theme.menu)){
+				var newsMenuType = "."+clsName+" ul{";
+				for(var i in theme.menu){
+					newsMenuType += stringTo(i)+":"+theme.menu[i]+";";
+				}
+				$("#meUiSelectNormBastType").append(newsMenuType+"}");
+			}
+			//处理菜单项样式
+			if(theme.item && !isEmptyObj(theme.item)){
+				var newsItemType = "."+clsName+" ul li{",
+					newsItemHover = "."+clsName+" ul li:hover{",
+					newsItemCurs = "."+clsName+" ul li.curs{";
+				for(var i in theme.item){
+					if(i == "hover"){
+						newsItemHover += "background:"+theme.item[i]+";";
+					}else if(i == "curs"){
+						newsItemCurs += "background:"+theme.item[i]+";";
+					}else{
+						newsItemType += stringTo(i)+":"+theme.item[i]+";";
+					}
+				}
+				$("#meUiSelectNormBastType").append(newsItemType+"}"+newsItemHover+"}"+newsItemCurs+"}");
+			}
+		}
+		function stringTo(i){
+			var str = i.replace(/([A-Z])/g,function(m){
+			  return "-"+m.toLowerCase();
+			});
+			return str;
+		}
+		function isEmptyObj(o){
+			if (typeof o === "object" && !(o instanceof Array)){  
+				var has = false;  
+				for (var i in o){  
+					has = true;  
+					break;  
+				}  
+				if (has){  
+					return false;  
+				}else{   
+					return true;  
+				}  
+			}
+		}
+	}
+	//创建用于替换select的DOM结构
+	function creatNode(o){
+		Zindex += 1;
+		var itemLi = "",el,cls;
+		for(var i=0;i<o.options.length; i++){
+			cls = i == o.index ? "curs" : "";
+			cls += i == o.disabled ? " disabled" : "";
+			itemLi += "<li data-alias="+(o.options[i].alias == ' ' ? 'null' : o.options[i].alias)+" class="+cls+">"+o.options[i].text+"</li>";
+		}
+		saveVal[o.id] = {"code":o.defaultAlias,"text":o.defaultVal};
+		el = $('<div id='+o.id+' class='+clsName+' style=width:'+o.width+'px;height:'+o.height+'px; id='+o.selectId+'>\
+					<p data-alias='+o.defaultAlias+'  class='+clsName+'-defaultVal style=line-height:'+o.height+'px>'+o.defaultVal+'</p>\
+					<ul style=z-index:'+Zindex+'>'+itemLi+'</ul>\
+				</div>');
+		el.bind(o.event || "click",function(e){
+			handlerFn.menuShow($(this));
+			return false;
+		});
+		if(o.scrollType){
+			el.find("ul").meScroll({cursorcolor:o.scrollType});
+		}
+		el.find("ul").bind(o.event || "click",function(ev){
+			handlerFn.itemSelect(ev,o.fn || "");
+			return false;
+		})
+		return el;		
+	}
+	//事件回调函数
+	var handlerFn = {
+		menuShow:function(obj){
+			var	menuObj = obj.find("ul");
+			if(menuObj.is(":visible")){
+				obj.removeClass("showing");
+				menuObj.slideUp(300);
+			}else{
+				$("."+clsName).removeClass("showing");
+				$("."+clsName).find("ul").hide();
+				obj.addClass("showing");
+				menuObj.slideDown(300);
+			}
+		},
+		itemSelect:function(ev,fn){
+			if(ev.target.nodeName.toLowerCase() == "li"){
+				var obj = $(ev.target);
+				if(obj.attr("class") == "disabled") return;
+				var parentObj = obj.parents("div."+clsName),
+					itemP = parentObj.find("p"),
+					vals = obj.attr("data-alias") || "",
+					text = obj.text(),
+					id = parentObj.attr("id");
+				itemP.text(text);
+				obj.addClass("curs").siblings().removeClass("curs");
+				parentObj.removeClass("showing");
+				parentObj.find("ul").slideUp(300);
+				saveVal[id] = {"code":vals,"text":text};
+				if(fn){
+					fn({parentId:id,value:vals,text:text});
+				}
+			}
+		},
+		returnVal:function(mode){
+			var results = "";
+			if(mode == "all"){
+				results = saveVal;
+			}else{
+				results = saveVal[mode];
+			}
+			return results;
+		}
+	}
+	$(document).bind("click",function(e){
+		var targetCls = e.target.className;
+		if(targetCls != clsName+"-defaultVal" || targetCls != clsName){
+			$("."+clsName).removeClass("showing");
+			$("."+clsName).find("ul").slideUp(300);
+		}
+	})
+	//对外接口
+	return me.select = {
+		rende : function(theme){
+			return replaceSelect(theme);
+		},
+		getVal : function(mode){
+			return handlerFn.returnVal(mode);
+		}
+	};
+}(me))

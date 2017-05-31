@@ -1,0 +1,395 @@
+/**
+ * @核心样式
+ * @定义tips的主体结构
+ * @边框,文字颜色
+ * @小箭头
+ * ——————————————————————————————————————————————————————————————————————
+ *      ClassName           |                    说明                   |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--left,         | 在目标元素的左边显示                      |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--right,        | 在目标元素的右边显示                      |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--top,          | 在目标元素的上面显示                      |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--top-left,     | 在目标元素的上面显示,小箭头靠左           |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--top-right,    | 在目标元素的上面显示,小箭头靠右           |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--bottom,       | 在目标元素的下面显示                      |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--bottom-left,  | 在目标元素的下面显示,小箭头靠左           |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--bottom-right  | 在目标元素的下面显示,小箭头靠右           |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--no-animate,   | 取消动画效果                              |
+ * ——————————————————————————————————————————————————————————————————————
+ * mouseTips--bounce        | 增加简单的动画效果                        |
+ * ——————————————————————————————————————————————————————————————————————        
+ */
+[class*="mouseTips--"] {
+  position: relative;
+  display: inline-block;
+}
+[class*="mouseTips--"]:before, [class*="mouseTips--"]:after {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1000000;
+    pointer-events: none;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    transition: 0.3s ease;
+    -webkit-transition-delay: 0ms;
+    -moz-transition-delay: 0ms;
+    transition-delay: 0ms; 
+}
+[class*="mouseTips--"]:hover{
+	background:" \9";
+}
+[class*="mouseTips--"]:hover::before, [class*="mouseTips--"]:hover::after {
+    visibility: visible;
+    opacity: 1; 
+	-webkit-transition-delay: 100ms;
+    -moz-transition-delay: 100ms;
+    transition-delay: 100ms;
+}
+[class*="mouseTips--"]:before {
+    content: '';
+    position: absolute;
+    background: transparent;
+    border: 6px solid transparent;
+    z-index: 1000001; 
+}
+[class*="mouseTips--"]:after {
+    background: #fff;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 12px;
+    white-space: nowrap; 
+	border:1px solid #ccc;
+	border-radius:3px;
+	color:currentcolor;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+[class*="mouseTips--"][data-label]:after {
+    content: attr(data-label); 
+}
+[data-label='']:before,
+[data-label='']:after {
+  display: none !important; 
+}
+/**
+ * 定义小箭头样式
+ * 通过边框挤压实现
+ */
+.mouseTips--top-left:before,
+.mouseTips--top-right:before,
+.mouseTips--top:before {
+  border-top-color: #ccc; 
+}
+.mouseTips--bottom-left:before,
+.mouseTips--bottom-right:before,
+.mouseTips--bottom:before {
+  border-bottom-color: #ccc; 
+}
+.mouseTips--left:before {
+  border-left-color: #ccc;
+}
+.mouseTips--right:before {
+  border-right-color: #ccc; 
+}
+
+/**
+ * top
+ */
+.mouseTips--top:before {
+  margin-bottom: -11px; 
+}
+
+.mouseTips--top:before, .mouseTips--top:after {
+  bottom: 100%;
+  left: 50%; 
+}
+
+.mouseTips--top:before {
+  left: calc(50% - 6px); 
+}
+
+.mouseTips--top:after {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%); 
+}
+
+.mouseTips--top:hover:before {
+  -webkit-transform: translateY(-8px);
+  -moz-transform: translateY(-8px);
+  transform: translateY(-8px); 
+}
+
+.mouseTips--top:hover:after {
+  -webkit-transform: translateX(-50%) translateY(-8px);
+  -moz-transform: translateX(-50%) translateY(-8px);
+  transform: translateX(-50%) translateY(-8px); 
+}
+
+/**
+ * bottom
+ */
+.mouseTips--bottom:before {
+  margin-top: -11px; 
+}
+
+.mouseTips--bottom:before, .mouseTips--bottom:after {
+  top: 100%;
+  left: 50%; 
+}
+
+.mouseTips--bottom:before {
+  left: calc(50% - 6px); 
+}
+
+.mouseTips--bottom:after {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%); 
+}
+
+.mouseTips--bottom:hover:before {
+  -webkit-transform: translateY(8px);
+  -moz-transform: translateY(8px);
+  transform: translateY(8px); 
+}
+
+.mouseTips--bottom:hover:after {
+  -webkit-transform: translateX(-50%) translateY(8px);
+  -moz-transform: translateX(-50%) translateY(8px);
+  transform: translateX(-50%) translateY(8px); 
+}
+
+/**
+ * right
+ */
+.mouseTips--right:before {
+  margin-left: -11px;
+  margin-bottom: -6px; 
+}
+
+.mouseTips--right:after {
+  margin-bottom: -15px; 
+}
+
+.mouseTips--right:before, .mouseTips--right:after {
+  left: 100%;
+  bottom: 50%; 
+}
+
+.mouseTips--right:hover:before {
+  -webkit-transform: translateX(8px);
+  -moz-transform: translateX(8px);
+  transform: translateX(8px); 
+}
+
+.mouseTips--right:hover:after {
+  -webkit-transform: translateX(8px);
+  -moz-transform: translateX(8px);
+  transform: translateX(8px); 
+}
+
+/**
+ * left
+ */
+.mouseTips--left:before {
+  margin-right: -11px;
+  margin-bottom: -6px; 
+}
+
+.mouseTips--left:after {
+  margin-bottom: -15px; 
+}
+
+.mouseTips--left:before, .mouseTips--left:after {
+  right: 100%;
+  bottom: 50%; 
+}
+
+.mouseTips--left:hover:before {
+  -webkit-transform: translateX(-8px);
+  -moz-transform: translateX(-8px);
+  transform: translateX(-8px); 
+}
+
+.mouseTips--left:hover:after {
+  -webkit-transform: translateX(-8px);
+  -moz-transform: translateX(-8px);
+  transform: translateX(-8px); 
+}
+
+/**
+ * top-left
+ */
+.mouseTips--top-left:before {
+  margin-bottom: -11px; 
+}
+
+.mouseTips--top-left:before, .mouseTips--top-left:after {
+  bottom: 100%;
+  left: 50%; 
+}
+
+.mouseTips--top-left:before {
+  left: calc(50% - 6px); 
+}
+
+.mouseTips--top-left:after {
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  transform: translateX(-100%); 
+}
+
+.mouseTips--top-left:after {
+  margin-left: 12px; 
+}
+
+.mouseTips--top-left:hover:before {
+  -webkit-transform: translateY(-8px);
+  -moz-transform: translateY(-8px);
+  transform: translateY(-8px); 
+}
+
+.mouseTips--top-left:hover:after {
+  -webkit-transform: translateX(-100%) translateY(-8px);
+  -moz-transform: translateX(-100%) translateY(-8px);
+  transform: translateX(-100%) translateY(-8px); 
+}
+
+/**
+ * top-right
+ */
+.mouseTips--top-right:before {
+  margin-bottom: -11px; 
+}
+
+.mouseTips--top-right:before, .mouseTips--top-right:after {
+  bottom: 100%;
+  left: 50%; 
+}
+
+.mouseTips--top-right:before {
+  left: calc(50% - 6px); 
+}
+
+.mouseTips--top-right:after {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  transform: translateX(0); 
+}
+
+.mouseTips--top-right:after {
+  margin-left: -12px; 
+}
+
+.mouseTips--top-right:hover:before {
+  -webkit-transform: translateY(-8px);
+  -moz-transform: translateY(-8px);
+  transform: translateY(-8px); 
+}
+
+.mouseTips--top-right:hover:after {
+  -webkit-transform: translateY(-8px);
+  -moz-transform: translateY(-8px);
+  transform: translateY(-8px); 
+}
+
+/**
+ * bottom-left
+ */
+.mouseTips--bottom-left:before {
+  margin-top: -11px; 
+}
+
+.mouseTips--bottom-left:before, .mouseTips--bottom-left:after {
+  top: 100%;
+  left: 50%; 
+}
+
+.mouseTips--bottom-left:before {
+  left: calc(50% - 6px); 
+}
+
+.mouseTips--bottom-left:after {
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  transform: translateX(-100%); 
+}
+
+.mouseTips--bottom-left:after {
+  margin-left: 12px; 
+}
+
+.mouseTips--bottom-left:hover:before {
+  -webkit-transform: translateY(8px);
+  -moz-transform: translateY(8px);
+  transform: translateY(8px); 
+}
+
+.mouseTips--bottom-left:hover:after {
+  -webkit-transform: translateX(-100%) translateY(8px);
+  -moz-transform: translateX(-100%) translateY(8px);
+  transform: translateX(-100%) translateY(8px); 
+}
+
+/**
+ * bottom-right
+ */
+.mouseTips--bottom-right:before {
+  margin-top: -11px; 
+}
+
+.mouseTips--bottom-right:before, .mouseTips--bottom-right:after {
+  top: 100%;
+  left: 50%; 
+}
+
+.mouseTips--bottom-right:before {
+  left: calc(50% - 6px); 
+}
+
+.mouseTips--bottom-right:after {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  transform: translateX(0); 
+}
+
+.mouseTips--bottom-right:after {
+  margin-left: -12px; 
+}
+
+.mouseTips--bottom-right:hover:before {
+  -webkit-transform: translateY(8px);
+  -moz-transform: translateY(8px);
+  transform: translateY(8px); 
+}
+
+.mouseTips--bottom-right:hover:after {
+  -webkit-transform: translateY(8px);
+  -moz-transform: translateY(8px);
+  transform: translateY(8px); 
+}
+
+/**
+ * 动画效果
+ */
+.mouseTips--no-animate:before, .mouseTips--no-animate:after {
+  -webkit-transition-duration: 0ms;
+  -moz-transition-duration: 0ms;
+  transition-duration: 0ms; 
+}
+
+.mouseTips--bounce:before, .mouseTips--bounce:after {
+  -webkit-transition: opacity 0.3s ease, visibility 0.3s ease, -webkit-transform 0.3s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -moz-transition: opacity 0.3s ease, visibility 0.3s ease, -moz-transform 0.3s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+}

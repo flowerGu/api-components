@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--级联选择</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com/MeAssest/MeJS2.0/me.css">
+  <style>
+	input{
+		margin:60px 160px 0;
+		width:160px;
+		height:35px;
+		line-height:35px;
+		display:block;
+		outline: none;
+		border:1px solid #fa4949;
+	}
+	button{
+		display:block;
+		width:100px;
+		height:50px;
+		line-height:50px;
+		margin:60px 160px;
+	}
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	
+	#container{
+		width:200px;
+	}
+	.layout{
+		width:865px;
+		background:url(../images/layout.png) repeat-y;
+	}
+	[data-item^="col-"]{
+		background:rgba(0,160,233,.8);
+		font-size:14px;
+		color:#fff;
+		min-height:45px;
+		line-height:45px;
+		text-align:center;
+	}
+	[data-wrap="layout"]{
+		margin-bottom:20px;
+	}
+	.layoutBg{
+		background:rgba(255,255,255,.7);
+		color:#000;
+	}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+	.codeBox{
+	background:none;
+	text-align:left;
+	}
+	.codeStyle{
+	padding-left:10px;background:none;
+	}
+	.codeStyle [data-item^="col-"]{
+	background:none; border:1px solid #ff6600;
+	}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  错误提示信息
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+				<li>
+				  <a href="#theme">主题</a>
+				</li>
+				<li>
+				  <a href="#API">API</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>错误提示信息</p>
+		  <p>使用时请用 <b>me.require</b> 方法按需加载到页面</p>
+		  <p>请注意：</p>
+		   
+			 <h5 style="padding:5px 10px;">HTML</h5>
+			 <div data-wrap="layout">
+				<div class="codeBox">
+					<pre>
+&lt;input type="text" id="target_ele" class="aim"&gt; 
+&lt;input type="text" id="second_ele" class="two"&gt;
+					</pre>
+				</div>
+			</div>
+			 <h5 style="padding:5px 10px;">JS</h5>
+		   <div data-wrap="layout" style="margin-bottom:0">
+				<div style="width:870px;" class="codeBox">
+					<pre>
+$('#target').on('blur',function(){
+             var tel = $(this).val().trim(),
+                 err_tip = '';
+
+            if(!$(this).val().trim()){
+                 me.errorTipEle({
+                    'target':'.aim',
+                    'content':'请输入手机号',                   
+                })
+                return false;
+            }
+            if(!(/^1[3-9]\d{9}$/.test(tel))){
+                me.errorTipEle({
+                    'target':'.aim',
+                    'content':'请输入正确的手机号',                    
+                })
+                return false;
+            }
+         })  
+       $('#second').on('blur',function(){
+           var id=$(this).val().trim();
+           if(!id){
+                me.errorTipEle({
+                    'target':'#second',
+                    'content':'金额不能为空'
+                })
+                return false;
+           }
+           if(!/^\d*(\.\d{0,2})$/.test(id)){
+               me.errorTipEle({
+                    'target':'#second',
+                    'content':'金额格式不正确',
+					'direction':'left'
+                })
+           }
+
+       })
+       
+					</pre>			
+				</div>
+				
+			</div>
+			<h4 class="h-title-4" id="code">示例</h4>
+				<input type="text" id="target" class="aim"/>  
+				<input type="text" id="second" class="two"/>  
+			<h4 class="h-title-4" id="API">API</h4>
+			<p>输入框提示信息(此控件适用于form类元素)</p>			
+			<table class="table table-bordered">
+            <thead>
+            <tr>
+              <td width="180">名称</td>
+              <td>说明</td>
+              <td>使用示例</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td width="180">target<font color="red">（必传参数）</font></td>
+              <td>需根据指定元素定位</td>
+              <td>
+								<pre>me.errorTipEle({<br>  target:'#target'
+})</pre>
+							</td>
+					</tr>
+            <tr>
+              <td width="80">content</td>
+              <td>提示信息</td>
+              <td><pre>me.errorTipEle({<br>  target:'#target',<br>  content:'请输入正确的手机号'
+})</pre>
+			  		</td>
+            </tr>
+						<tr>
+              <td width="80">direction</td>
+              <td>提示信息元素在目标元素的哪个方向,属性为:<br>1.top,2.right,3.bottom(默认),4.left</td>
+              <td><pre>me.errorTipEle({<br>  target:'#target',<br>  content:'请输入正确的手机号',<br>  direction:'top'
+})</pre>
+			  			</td>
+            </tr>
+						<tr>
+              <td width="80">color</td>
+              <td>提示文字颜色<br>默认为'#ef3d3d'</td>
+              <td><pre>me.errorTipEle({<br>  target:'#target',<br>  content:'请输入正确的手机号',<br>  direction:'top',<br>  color:'red'
+})</pre>
+			  			</td>
+            </tr>
+						<
+						<tr>
+              <td width="80">pos</td>
+              <td>用户自定义提示元素位置（<span style="color:red">此属性不能与direction一起使用</span>）</td>
+              <td><pre>me.errorTipEle({<br>  target:'#target',<br>  content:'请输入正确的手机号',<br>  color:'red',<br>  pos:{left:'300px',top:'300px}
+})</pre>
+			  			</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+	me.require(['errorTipEle'], 'bundle');
+	me.require.ready('bundle',function(){
+		$('#target').on('blur',function(){
+             var tel = $(this).val().trim(),
+                 err_tip = '';
+
+            if(!$(this).val().trim()){
+                 me.errorTipEle({
+                    'target':'.aim',
+                    'content':'请输入手机号',                   
+                })
+                return false;
+            }
+            if(!(/^1[3-9]\d{9}$/.test(tel))){
+                me.errorTipEle({
+                    'target':'.aim',
+                    'content':'请输入正确的手机号',                    
+                })
+                return false;
+            }
+         })  
+       $('#second').on('blur',function(){
+           var id=$(this).val().trim();
+           if(!id){
+                me.errorTipEle({
+                    'target':'#second',
+                    'content':'金额不能为空',
+					'direction':'top'
+                })
+                return false;
+           }
+           if(!/^\d*(\.\d{0,2})$/.test(id)){
+               me.errorTipEle({
+                    'target':'#second',
+                    'content':'金额格式不正确'
+                })
+           }
+
+       })
+       
+	})
+	
+</script>

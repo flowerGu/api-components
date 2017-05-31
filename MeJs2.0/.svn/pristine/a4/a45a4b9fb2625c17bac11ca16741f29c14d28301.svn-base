@@ -1,0 +1,308 @@
+@charset "UTF-8";
+/* ----------------------------------
+@按钮以 me-u-btn 开头
+----------------------------------*/
+.me-u-btn {
+	display:inline-block;
+	background:#108ee9;
+	padding:8px 16px;
+	font-size:14px;
+	font-family:"微软雅黑";
+	cursor:pointer;
+	outline: 0;
+	position:relative;
+	color:#fff;
+	text-align:center;
+	border-radius:3px;
+	border:1px solid transparent;
+	-webkit-appearance:none;
+	-webkit-font-smoothing:antialiased;
+	-webkit-tap-highlight-color:transparent
+}
+.me-u-btn:hover {
+    background-color: #49a9ee;
+    border-color: #49a9ee;
+}
+/*
+@按钮锁定状态
+@在按钮dom上增加 disabled
+*/
+.me-u-btn[disabled],
+.me-u-btn[disabledIe],
+.me-u-btn[disabledIe]:hover,
+.me-u-btn[disabled]:hover{
+	border-color:rgba(0,0,0,0.09);
+	cursor:not-allowed;
+	background-color:#f7f7f7;
+	opacity: 1;
+	color:rgba(0,0,0,0.3);
+}
+/*
+@按钮锁定且带loading状态增加data-loading属性即可
+@DOM结构必须为:
+    <button class="me-u-btn" data-loading>Submit</button>
+*/
+.me-u-btn[data-loading]:before {
+    content:"\F29C";
+	display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	animation: loadingCircle 1s infinite linear;
+	margin-right:5px;
+}
+@-webkit-keyframes loadingCircle {
+    0% {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+@keyframes loadingCircle {
+    0% {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+/*
+@按钮锁定且带loading状态增加data-finish属性即可
+@DOM结构必须为:
+    <button class="me-u-btn" data-finish>Submit</button>
+*/
+.me-u-btn[data-finish]:before {
+    content:"\F383";
+	display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	margin-right:5px;
+}
+/*
+@按钮规格：大 默认（中）块级按钮
+*/
+.me-u-btn[data-size=lg] {
+	padding:12px 22px;
+	font-size:16px;
+}
+.me-u-btn[data-size=sm] {
+	padding:3px 8px;
+	font-size:12px;
+}
+.me-u-btn[data-size=block] {
+	padding:12px 22px;
+	font-size:16px;
+	width:100%;
+}
+/*
+@按钮类型
+@按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
+*/
+.me-u-btn[data-type=minor]{
+	border:1px #d9d9d9 solid;
+	background:#fff;
+	color: rgba(0,0,0,.8);
+}
+.me-u-btn[data-type=dashed]{
+	border:1px #d9d9d9 dashed;
+	background:#fff;
+	color: rgba(0,0,0,.8);
+}
+.me-u-btn[data-type=text]{
+	border:1px solid transparent;
+	background:#fff;
+	color: rgba(0,0,0,.8);
+}
+.me-u-btn[data-type=minor]:hover,
+.me-u-btn[data-type=dashed]:hover{
+	color: #49a9ee;
+    background: #fff;
+    border-color: #49a9ee;
+}
+.me-u-btn[data-type=text]:hover{
+	border:1px solid transparent;
+	background:#fff;
+	color:#49a9ee;
+}
+/*
+@颜色
+@在按钮dom上增加"data-color"属性
+*/
+.me-u-btn[data-color=grey] {
+    background:#bfbfbf;
+}
+.me-u-btn[data-color=cyan] {
+    background:#00a2ae;
+}
+.me-u-btn[data-color=yellow] {
+    background:#ffbf00;
+}
+.me-u-btn[data-color=purple] {
+    background:#7265e6;
+}
+.me-u-btn[data-color=orange] {
+    background:#f56a00;
+}
+.me-u-btn[data-color=pink] {
+    background:#f5317f;
+}
+.me-u-btn[data-color=blue] {
+    background:#108ee9;
+}
+.me-u-btn[data-color=green] {
+    background:#00a854;
+}
+.me-u-btn[data-color=red] {
+    background:#f04134;
+}
+.me-u-btn[data-color=grey]:hover,
+.me-u-btn[data-color=cyan]:hover,
+.me-u-btn[data-color=yellow]:hover,
+.me-u-btn[data-color=purple]:hover,
+.me-u-btn[data-color=orange]:hover,
+.me-u-btn[data-color=pink]:hover,
+.me-u-btn[data-color=blue]:hover,
+.me-u-btn[data-color=green]:hover,
+.me-u-btn[data-color=red]:hover{
+	border-color:transparent;
+    opacity: 0.8;
+}
+/*
+@图标按钮
+@DOM结构必须为:
+    <button class="me-u-btn" data-icon><i class="iconclass"></i>Submit</button>
+*/
+.me-u-btn[data-icon=left] i{
+	margin-right:5px;
+}
+.me-u-btn[data-icon=right] i{
+	margin-left:5px;
+}
+.me-u-btn[data-icon=center]{
+	padding:2px 5px;
+}
+.me-u-btn[data-icon=center] i{
+	font-size:20px;
+}
+/*
+@带菜单的按钮
+*/
+.me-u-btn[data-menu] > div{
+	position:absolute;
+	left:0px;
+	top:27px;
+	display:none;
+	width:100%;
+	background:transparent;
+}
+.me-u-btn[data-size=lg] > div{
+	position:absolute;
+	left:0px;
+	top:37px;
+	display:none;
+	width:100%;
+	background:transparent;
+}
+.me-u-btn[data-size=sm] > div{
+	position:absolute;
+	left:0px;
+	top:18px;
+	display:none;
+	width:100%;
+	background:transparent;
+}
+.me-u-btn[data-menu] > div ul{
+	outline: none;
+    list-style-type: none;
+    padding: 0;
+    margin:5px 0 0 0;
+    text-align: left;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.2);
+    background-clip: padding-box;
+	width:100%;
+}
+.me-u-btn[data-menu] > div ul li{
+	padding: 7px 16px;
+    margin: 0;
+    clear: both;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0,0,0,.65);
+    white-space: nowrap;
+    cursor: pointer;
+}
+.me-u-btn[data-menu] > div ul li:hover{
+	background:#ecf6fd;
+}
+.me-u-btn[data-menu]:hover  > div{
+	display:block;
+	animation:meSlideDownIn 0.5s;  
+    -webkit-animation:meSlideDownIn 0.5s; 
+}
+@-webkit-keyframes meSlideDownIn {
+    0% {
+        opacity: 0;
+        -webkit-transform-origin:0% 0%;
+        transform-origin:0% 0%;
+        -webkit-transform: scaleY(.8);
+        transform: scaleY(.8)
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform-origin:0% 0%;
+        transform-origin:0% 0%;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1)
+    }
+}
+
+@keyframes meSlideDownIn {
+    0% {
+        opacity: 0;
+        -webkit-transform-origin:0% 0%;
+        transform-origin:0% 0%;
+        -webkit-transform: scaleY(.5);
+        transform: scaleY(.5)
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1)
+    }
+}

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/jquery-1.8.2.min.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	
+	
+	.layout{
+		width:865px;
+		background:url(../images/layout.png) repeat-y;
+	}
+	[data-item^="col-"]{
+		background:rgba(0,160,233,.8);
+		font-size:18px;
+		color:#fff;
+		min-height:45px;
+		line-height:45px;
+		text-align:center;
+	}
+	[data-offset]{
+		background:rgba(0,160,233,.8);
+		font-size:18px;
+		color:#fff;
+		min-height:45px;
+		line-height:45px;
+		text-align:center;
+	}
+	[data-wrap="layout"]{
+		margin-bottom:20px;
+	}
+	.layoutBg{
+		background:rgba(255,255,255,.7);
+		color:#000;
+	}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+	.codeBox{
+	background:none;
+	text-align:left;
+	}
+	.codeStyle{
+	padding-left:10px;background:none;
+	}
+	.codeStyle [data-item^="col-"]{
+	background:none; border:1px solid #ff6600;
+	}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  栅格布局
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>12栅格系统--将业务区域分割成12列</p>
+		  <p>布局父容器必须包含属性 <b>data-wrap="layout"</b> </p>
+		  <p>父容器内子元素必须包含属性 <b>data-item="col-1"</b> 其中”col-“后面的数字是1到12任意组合</p>
+		  <p>字元素的偏移必须用 <b>data-offset="number"</b> 属性，其中”number“的值为0--11之间的数字</p>
+		  <p>布局可以嵌套</p>
+		  <p>去掉了传统意义上栅格的"槽"的概念,将模块之间的间距(栅格系统的"槽")留给开发者自己通过内外边距自由控制</p>
+		  <pre>
+&lt;div data-wrap="layout"&gt;
+	&lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+	&lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+	&lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+	&lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+&lt;/div&gt;
+		  </pre>
+		  <div class="layout">
+			<div data-wrap="layout">
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+				<div data-item="col-1">col-1</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-item="col-3">col-3</div>
+				<div data-item="col-3" class="layoutBg">col-3</div>
+				<div data-item="col-3">col-3</div>
+				<div data-item="col-3" class="layoutBg">col-3</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-item="col-4">col-4</div>
+				<div data-item="col-4" class="layoutBg">col-4</div>
+				<div data-item="col-4">col-4</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-item="col-3">col-3</div>
+				<div data-item="col-9" class="layoutBg">col-9</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-item="col-4" class="layoutBg">col-4</div>
+				<div data-item="col-8">col-8</div>
+			</div>
+		  </div>
+		  <div class="layout">
+			<div data-wrap="layout">
+				<div data-offset="11">偏移11</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="10">偏移10</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="9">偏移9</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="8">偏移8</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="7">偏移7</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="6">偏移6</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="5">偏移5</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="4">偏移4</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="3">偏移3</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="2">偏移2</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="1">偏移1</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-offset="0">偏移0</div>
+			</div>
+		  </div>
+		   <h4 class="h-title-4" id="code">示例</h4>
+		   <div data-wrap="layout">
+				<div data-item="col-6" class="codeBox">
+		  <pre>
+&lt;div data-wrap="layout"&gt;
+  &lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+&lt;/div&gt;
+		  </pre>			
+				</div>
+				<div data-item="col-6" class="codeStyle">
+					<div data-wrap="layout">
+						<div data-item="col-3" style="color:#808080">col-3</div>
+						<div data-item="col-3" style="color:#808080">col-3</div>
+						<div data-item="col-3" style="color:#808080">col-3</div>
+						<div data-item="col-3" style="color:#808080">col-3</div>
+					</div>
+				
+				</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-item="col-6" class="codeBox">
+		  <pre>
+&lt;div data-wrap="layout"&gt;
+  &lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div data-item="col-9"&gt;col-9&lt;/div&gt;
+&lt;/div&gt;
+		  </pre>			
+				</div>
+				<div data-item="col-6" class="codeStyle">
+					<div data-wrap="layout">
+						<div data-item="col-3" style="color:#808080">col-3</div>
+						<div data-item="col-9" style="color:#808080">col-9</div>
+					</div>
+				
+				</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-item="col-6" class="codeBox">
+		  <pre>
+&lt;div data-wrap="layout"&gt;
+  &lt;div data-item="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div data-offset="6"&gt;col-3,偏移了6&lt;/div&gt;
+&lt;/div&gt;
+		  </pre>			
+				</div>
+				<div data-item="col-6" class="codeStyle">
+					<div data-wrap="layout">
+						<div data-item="col-3" style="color:#808080">col-3</div>
+						<div data-offset="6">col-3,偏移了6</div>
+					</div>
+				
+				</div>
+			</div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

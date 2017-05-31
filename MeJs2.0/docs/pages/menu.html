@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--flex布局</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+    #vertical,#horizontal,#inline{
+      margin:30px 0;
+    }
+    .menu-submenu-horizontal:hover{
+      background: #fff !important;
+    }
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	p{line-height:24px;}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+.docs-pictures,.docs-pictures1 {
+    width: 500px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  ul{
+    list-style-type: none;
+  }
+  .docs-pictures li,.docs-pictures1 li {
+    width: 250px;
+    height: 150px;
+    float: left;
+  }
+  .docs-pictures li img,.docs-pictures1 li img {
+    width: 250px;
+    height: 150px;
+  }
+  .docs-galley1 .viewer-button-close{
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  Menu
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>为页面和功能提供导航的菜单列表。</p>
+      <p>导航菜单是一个网站的灵魂，用户依赖导航在各个页面中进行跳转。</p>
+      <p>一般分为顶部导航和侧边导航，顶部导航提供全局性的类目和功能，侧边导航提供多级结构来收纳和排列网站架构。</p>
+      <h4 class="h-title-4" id="explain">HTML</h4>
+      <p>导航菜单约定html结构，样式可以根据实际情况用css样式定义。</p>
+		  <pre>
+&lt;ul id="vertical"&gt; &lt;!--被渲染菜单id，根节点--&gt;
+  &lt;li&gt;
+    &lt;div&gt; &lt;!--菜单标题需要写在div标签中，可以自定义加任何icon，文字，标签等元素。--&gt;
+        &lt;span&gt;&lt;i class="me-ion-gear-b"&gt;&lt;/i&gt;Navigation One&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;ul&gt; &lt;!--菜单导航元素用ul标签，如遇到二级，嵌套在对应的li标签中即可--&gt;
+      &lt;li&gt;
+        &lt;div&gt;Item 1&lt;/div&gt; &lt;!--二级标题--&gt;
+        &lt;ul&gt; &lt;!--二级菜单导航--&gt;
+          &lt;li&gt;Option 1&lt;/li&gt;
+          &lt;li&gt;Option 2&lt;/li&gt;&lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div&gt;Item 2&lt;/div&gt; &lt;!--二级标题--&gt;
+        &lt;ul&gt; &lt;!--二级菜单导航--&gt;
+          &lt;li&gt;Option 3&lt;/li&gt;
+          &lt;li&gt;Option 4&lt;/li&gt;&lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt; 
+		  </pre>
+      <h4 class="h-title-4" id="explain">JS</h4>
+      <p>需要通过me.require导入menu组件js、css文件。具体见<a href="./require.html">me.require用法</a></p>
+		  <pre>
+me.require(['menu&css'], 'menu'); //加载menu.js、meu.css文件
+me.require.ready('menu',function(){
+  me.menu.render({
+    ele: 'vertical', //需要渲染元素id
+    mode: 'vertical', //mode模式，三种，不写默认为'vertical'
+    callback: function(ele){ //点击菜单callback函数
+      console.log(ele)
+    }
+  });
+});
+		  </pre>
+      <div data-wrap="layout">
+        <div data-item="col-6">
+          <h4 class="h-title-4" id="code">示例 mode:'vertical'</h4>
+          <ul id="vertical" style="width:200px;border: 1px solid #e9e9e9;">
+            <li>
+              <div>
+                  <span><i class="anticon anticon-setting me-ion-gear-b"></i>Navigation One</span>
+              </div>
+              <ul>
+                <li>
+                  <div>Item 1</div>
+                  <ul>
+                    <li>Option 1</li>
+                    <li>Option 2</li></ul>
+                </li>
+                <li>
+                  <div>Item 2</div>
+                  <ul>
+                    <li>Option 3</li>
+                    <li>Option 4</li></ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div>
+                  <span><i class="anticon anticon-setting me-ion-speedometer"></i>Navigation Two</span>
+              </div>
+              <ul>
+                <li>Option 5</li>
+                <li>Option 6</li>
+                <li>
+                  <div>Submenu</div>
+                  <ul>
+                    <li>Option 7</li>
+                    <li>Option 8</li></ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div data-item="col-6">
+          <h4 class="h-title-4" id="code">示例 mode:'inline'</h4>
+          <ul id="inline" style="width:200px;border: 1px solid #e9e9e9;">
+            <li>
+              <div>
+                  <span><i class="anticon anticon-setting me-ion-gear-b"></i>Navigation One</span>
+              </div>
+              <ul>
+                <li>
+                  <div>Item 1</div>
+                  <ul>
+                    <li>Option 1</li>
+                    <li>Option 2</li></ul>
+                </li>
+                <li>
+                  <div>Item 2</div>
+                  <ul>
+                    <li>Option 3</li>
+                    <li>Option 4</li></ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div>
+                  <span><i class="anticon anticon-setting me-ion-speedometer"></i>Navigation Two</span>
+              </div>
+              <ul>
+                <li>Option 5</li>
+                <li>Option 6</li>
+                <li>
+                  <div>Submenu</div>
+                  <ul>
+                    <li>Option 7</li>
+                    <li>Option 8</li></ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+       
+      <h4 class="h-title-4" id="code">示例 mode:'horizontal'</h4>
+      <ul id="horizontal">
+        <li>
+          <div>
+              <span><i class="anticon anticon-setting me-ion-gear-b"></i>Navigation One</span>
+          </div>
+          <ul>
+            <li>
+              Option 1
+            </li>
+            <li>
+              Option 2
+            </li>
+          </ul>
+        </li>
+        <li>
+          <div>
+              <span><i class="anticon anticon-setting me-ion-speedometer"></i>Navigation Two</span>
+          </div>
+          <ul>
+            <li>Option 3</li>
+            <li>Option 4</li>
+          </ul>
+        </li>
+      </ul>
+      <h4 class="h-title-4" id="code">API</h4>
+      <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>名称</th>
+              <th>说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>ele<br />需要渲染导航元素id</td>
+              <td>
+			  <pre>
+me.menu.render({
+  <b>ele: 'vertical',</b>
+  mode: 'vertical',
+  callback: function(ele){
+    console.log(ele)
+  }
+});
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>mode<br />菜单类型，现在支持垂直、水平、和内嵌模式三种<br />string: 'vertical', 'horizontal', 'inline'<br />默认为：'vertical'</td>
+              <td>
+			  <pre>
+me.menu.render({
+  ele: 'vertical',
+  <b>mode: 'vertical',</b>
+  callback: function(ele){
+    console.log(ele)
+  }
+});
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>callback<br />被选中时调<br />返回被选中dom元素</td>
+              <td>
+			  <pre>
+me.menu.render({
+  ele: 'vertical',
+  mode: 'vertical',x
+  <b>callback: function(ele){
+    console.log(ele)
+  }</b>
+});
+			  </pre>
+			  </td>
+            </tr>
+			
+            </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  me.require(['menu&css'], 'menu');
+  me.require.ready('menu',function(){
+    me.menu.render({
+      ele: 'vertical',
+      mode: 'vertical',
+      selectedHide: false,
+      callback: function(ele){
+        console.log(ele)
+      }
+    });
+    me.menu.render({
+      ele: 'inline',
+      mode: 'inline',
+      selectedHide: false,
+      callback: function(ele){
+        console.log(ele)
+      }
+    });
+    me.menu.render({
+      ele: 'horizontal',
+      mode: 'horizontal',
+      selectedHide: false,
+      callback: function(ele){
+        console.log(ele)
+      }
+    });
+  });
+</script>
+</html>

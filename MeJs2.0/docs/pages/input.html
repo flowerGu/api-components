@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--INPUT输入控件</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 15px 0;}
+	p{line-height:24px;}
+	b{color:#ff0000;}
+	.shilibox{
+		border:1px solid #ccc;
+		border-radius:5px;
+		margin:8px 5px;
+		padding:8px 16px;
+	}
+	.shilibox div[data-wrap="checkbox"],.shilibox div[data-wrap="radio"]{
+		margin:16px 30px 0 0;
+	}
+	.shilibox h3{
+		font-size:16px;
+		line-height:26px;
+		border-bottom:1px solid #ccc;
+		margin-bottom:8px;
+	}
+	.codeBox{
+		margin-top:8px;
+		display:none;
+	}
+	.showCode{
+		text-align:right;
+		cursor:pointer;
+	}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  INPUT输入控件
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>用于用户数据收集,校验</p>
+		  <p>该控件分为标准模式和左侧带ICON模式两种,关于ICON的应用可以从<a href="meicon.html">MEicon</a>中选用</p>
+		  <p>标准模式的input控件必须在其承载的父元素拥有<b>data-type="norm"</b>属性</p>
+		  <p>带ICON模式的input控件必须在其承载的父元素拥有<b>data-type="icon"</b>属性,i 标签为ICON的载体</p>
+		  <p>FILE控件必须在其承载的父元素拥有<b>data-type="file"</b>属性,i 标签为ICON的载体</p>
+		  <p>input的类型分别是：text,password,file</p>
+		   <h4 class="h-title-4" id="code">示例</h4>
+		   <div data-wrap="layout">
+				<div data-item="col-6">		
+					<div class="shilibox">
+						<h3>标准模式:</h3>
+						<div data-type="norm">
+							<input type="text" placeholder="默认">
+						</div>
+						<div data-type="norm" data-state="verify">
+							<input type="text" placeholder="验证中......">
+						</div>
+						<div data-type="norm" data-state="success">
+							<input type="text" placeholder="验证通过">
+						</div>
+						<div data-type="norm" data-state="fail" data-label="验证失败原因描述">
+							<input type="text" placeholder="验证失败">
+						</div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+&lt;div data-type="norm"&gt;
+    &lt;input type="text" placeholder="默认"&gt;
+&lt;/div&gt;
+&lt;div data-type="norm" data-state="verify"&gt;
+    &lt;input type="text" placeholder="验证中......"&gt;
+&lt;/div&gt;
+&lt;div data-type="norm" data-state="success"&gt;
+    &lt;input type="text" placeholder="验证通过"&gt;
+&lt;/div&gt;
+&lt;div data-type="norm" data-state="fail" data-label="验证失败原因描述"&gt;
+    &lt;input type="text" placeholder="验证失败"&gt;
+&lt;/div&gt;
+------------------------------------------
+请注意：
+    该控件的验证状态由 data-state 属性控制；其值分别为：
+	verify(验证中，一般用作需发请求的场景下);
+	success(校验通过);
+	fail(校验失败),其中校验失败的信息由父标签的data-label属性来承载;
+						  </pre>
+					</div>
+				</div>
+				<div data-item="col-6">
+					<div class="shilibox">
+						<h3>左侧带ICON模式：</h3>
+						<div data-type="icon">
+							<i class="me-ion-person"></i>
+							<input type="text" placeholder="ICON模式">
+						</div>
+						<div data-type="icon" data-state="verify">
+							<i class="me-ion-o-locked"></i>
+							<input type="password" placeholder="ICON模式验证中...">
+						</div>
+						<div data-type="icon" data-state="success">
+							<i class="me-ion-o-locked"></i>
+							<input type="password" placeholder="ICON模式验证成功">
+						</div>
+						<div data-type="icon" data-state="fail" data-label="失败原因描述在此!">
+							<i class="me-ion-o-locked"></i>
+							<input type="text" placeholder="ICON模式验证失败!">
+						</div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-type="icon"&gt;
+    &lt;i class="me-ion-person"&gt;&lt;/i&gt;
+    &lt;input type="text" placeholder="ICON模式"&gt;
+&lt;/div&gt;
+&lt;div data-type="icon" data-state="verify"&gt;
+    &lt;i class="me-ion-o-locked"&gt;&lt;/i&gt;
+    &lt;input type="password" placeholder="ICON模式验证中..."&gt;
+&lt;/div&gt;
+&lt;div data-type="icon" data-state="success"&gt;
+    &lt;i class="me-ion-o-locked"&gt;&lt;/i&gt;
+    &lt;input type="password" placeholder="ICON模式验证成功"&gt;
+&lt;/div&gt;
+&lt;div data-type="icon" data-state="fail" data-label="失败原因描述在此!"&gt;
+    &lt;i class="me-ion-o-locked"&gt;&lt;/i&gt;
+    &lt;input type="text" placeholder="ICON模式验证失败!"&gt;
+&lt;/div&gt;
+------------------------------------------
+请注意：
+    该控件的左侧图标由 i 标签作为载体(加class即可),具体的图标可以在MEicon中挑选
+    该控件的验证状态由 data-state 属性控制；其值分别为：
+	verify(验证中，一般用作需发请求的场景下);
+	success(校验通过);
+	fail(校验失败),其中校验失败的信息由父标签的data-label属性来承载;
+						  </pre>
+					</div>
+				</div>
+			</div>
+			<h4 class="h-title-4" id="theme">FILE控件</h4>
+			<p>用于文件的上传。</p>
+			<div data-wrap="layout">
+				<div data-item="col-12">
+					<div class="shilibox">
+						<div data-type="file">
+							<input type="file">
+							<i class="me-ion-upload"></i>
+							<span>选择文件</span>
+						</div>
+						<div data-type="file" data-cyan>
+							<input type="file">
+							<i class="me-ion-o-cloud-upload-outline"></i>
+							<span>选择文件</span>
+						</div>
+						<div data-type="file" data-yellow>
+							<input type="file">
+							<i class="me-ion-o-filing-outline"></i>
+							<span>选择文件</span>
+						</div>
+						<div data-type="file" data-purple>
+							<input type="file">
+							<i class="me-ion-o-filing"></i>
+							<span>选择文件</span>
+						</div>
+						<div data-type="file" data-orange>
+							<input type="file">
+							<i class="me-ion-share"></i>
+							<span>选择文件</span>
+						</div>
+						<div data-type="file" data-pink>
+							<input type="file">
+							<i class="me-ion-images"></i>
+							<span>选择文件</span>
+						</div>
+						<div data-type="file" data-blue>
+							<input type="file">
+							<i class="me-ion-o-upload"></i>
+							<span>选择文件</span>
+						</div>
+						<div data-type="file" data-green>
+							<input type="file">
+							<i class="me-ion-a-arrow-up"></i>
+							<span>选择文件</span>
+						</div>
+						<div data-type="file" data-red>
+							<input type="file">
+							<i class="me-ion-o-paperplane-outline"></i>
+							<span>选择文件</span>
+						</div>
+						 <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						 <pre class="codeBox">
+&lt;div data-type="file"&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-upload"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+&lt;div data-type="file" data-cyan&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-o-cloud-upload-outline"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+&lt;div data-type="file" data-yellow&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-o-filing-outline"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+&lt;div data-type="file" data-purple&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-o-filing"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+&lt;div data-type="file" data-orange&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-share"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+&lt;div data-type="file" data-pink&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-images"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+&lt;div data-type="file" data-blue&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-o-upload"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+&lt;div data-type="file" data-green&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-a-arrow-up"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+&lt;div data-type="file" data-red&gt;
+	&lt;input type="file"&gt;
+	&lt;i class="me-ion-o-paperplane-outline"&gt;&lt;/i&gt;
+	&lt;span&gt;选择文件&lt;/span&gt;
+&lt;/div&gt;
+						 </pre>
+					</div>
+				</div>
+			</div>
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+	$(".showCode").bind("click",function(){
+		var codebox = $(this).next("pre.codeBox");
+		if(codebox.is(":visible")){
+			codebox.hide();
+		}else{
+			codebox.show();
+		}
+	})
+</script>

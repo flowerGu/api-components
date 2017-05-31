@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>me文档-组件--MeIcon</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="Generate your documentation.">
+	<script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+	<script src="../api_files/prettify.js"></script>
+	<script src="../api_files/bootstrap.js"></script>
+	<script src="../js/Components.js"></script>
+	<link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+	<link rel="stylesheet" type="text/css" href="../api_files/base.css">
+	<link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+	<style>
+		section {
+			padding-top: 13px;
+		}
+		
+		.h-title {
+			border-bottom: 1px solid #f1f1f1
+		}
+		
+		.h-title ul {
+			float: right;
+			font-size: 16px;
+			font-weight: 100;
+			list-style: none;
+			padding-top: 15px;
+		}
+		
+		.h-title ul li {
+			float: left;
+			margin: 0 5px;
+			padding-right: 10px;
+			border-right: 1px solid #f1f1f1;
+		}
+		
+		.h-title-4 {
+			padding: 20px 0 0 0;
+		}
+		
+		p {
+			line-height: 24px;
+		}
+		
+		b {
+			color: #ff0000;
+			font-weight: 900;
+		}
+		
+		#icons li {
+			display: inline-block;
+			text-align: center;
+			font-size: 30px;
+			padding: 10px;
+			cursor: pointer;
+		}
+		
+		#icons li:hover,
+		#icons li.active {
+			color: #ff6600;
+		}
+		
+		#icon-panel {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+			padding: 0px 2px 10px 2px;
+			width: 260px;
+			border-radius: 4px;
+			background: white;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+			text-align: center;
+			font-size: 14px;
+			font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+		}
+		
+		#icon-name {
+			display: block;
+			font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+			font-size: 14px;
+			text-align: center;
+			width: 100%;
+			border: 0;
+			box-shadow: none;
+			background: none;
+			cursor: pointer;
+			margin: 0px;
+		}
+		
+		#icon-panel ul {
+			margin: 10px 0;
+			padding: 0px;
+			list-style: none;
+		}
+	</style>
+	<script>
+		$(function () {
+			$("#icons li").bind("click", function () {
+				var _this = $(this);
+				var posL = _this.offset().left - 100 + "px";
+				var posT = _this.offset().top + _this.outerHeight() + "px";
+				var text = _this.attr("class");
+				if (!_this.hasClass("active")) {
+					_this.addClass("active");
+					_this.siblings().removeClass("active");
+				}
+				$("#icon-name").val(text.replace(" active", ''));
+				$("#icon-panel").css({ left: posL, top: posT });
+			})
+			$("#icon-panel-close").click(function () {
+				$("#icon-panel").css({ left: "-9999px", top: "-9999px" });
+				$("#icons li").removeClass("active");
+			})
+		})
+	</script>
+</head>
+
+<body>
+	<div class="container content">
+		<div class="row">
+			<div class="span3 bs-docs-sidebar">
+				<ul id="lists" class="nav nav-list bs-docs-sidenav">
+				</ul>
+			</div>
+			<div class="span9">
+				<section>
+					<h3 class="h-title">
+						日历组件
+						<ul class="indexs">
+							<li>
+								<a href="#explain">说明</a>
+							</li>
+							<li>
+								<a href="#code">示例</a>
+							</li>
+						</ul>
+					</h3>
+
+					<h4 class="h-title-4" id="explain">说明</h4>
+					<p>日历组件，可以方便的进行日期的选择，具有日期范围限制、开始日期设定、自定义日期格式等功能！</p>
+
+					<h4 class="h-title-4">HTML及调用方式</h4>
+					<pre style="margin-top:10px">&lt;input type="text" id="demo" class="laydate-icon"&gt; </pre>
+					<pre>
+me.require(['dateChoose'], 'dateChoose'); //加载dateChoose.js文件
+	me.require.ready('dateChoose',function(){   //关于require的使用请查阅对应的文档
+		me.laydate({
+			//调用
+	})
+})
+					</pre>
+					<h4 class="h-title-4">皮肤展示</h4>
+					<div class="dataSkin" style="overflow:hidden">
+						<div style="width:206px;float:left;text-align: center;height:66px;background:#eee;margin:10px 20px 10px 0px;padding-top:10px">
+							<p ex="默认">默认</p>
+							<input skin="default" type="text" id="molv" style="padding:15px;margin:10px;margin-left:0">
+						</div>
+						<div style="width:206px;float:left;text-align: center;height:66px;background:#009F95;margin:10px 20px 10px 0px;padding-top:10px">
+							<p style="color:#fff" ex="墨绿">墨绿</p>
+							<input skin="molv" type="text" id="molv" style="padding:15px;margin:10px;margin-left:0">
+						</div>
+						<div style="width:206px;float:left;text-align: center;height:66px;background:#D91600;margin:10px 20px 10px 0px;padding-top:10px">
+							<p style="color:#fff" ex="大红">大红</p>
+							<input skin="dahong" type="text" id="molv" style="padding:15px;margin:10px;margin-left:0">
+						</div>
+						<div style="width:206px;float:left;text-align: center;height:66px;background:#eee;margin:10px 20px 10px 0px;padding-top:10px">
+							<p style="color:#fff" ex="雅灰">雅灰</p>
+							<input skin="yahui" type="text" id="molv" style="padding:15px;margin:10px;margin-left:0">
+						</div>
+						<div style="width:206px;float:left;text-align: center;height:66px;background:#34AADC;margin:10px 20px 10px 0px;padding-top:10px">
+							<p style="color:#fff" ex="雅蓝">雅蓝</p>
+							<input skin="yalan" type="text" id="molv" style="padding:15px;margin:10px;margin-left:0">
+						</div>
+						<div style="width:206px;float:left;text-align: center;height:66px;background:#F4F0E6;margin:10px 20px 10px 0px;padding-top:10px">
+							<p ex="浅黄">浅黄</p>
+							<input skin="qianhuang" type="text" id="molv" style="padding:15px;margin:10px;margin-left:0">
+						</div>
+					</div>
+										<pre style="margin-top:10px">
+me.laydate({
+	elem: '#demo',
+	skin: 'default'
+})
+					</pre>
+
+					<h4 style="margin-top:20px">日期选择回调</h4>
+					<input type="text" id="demo" style="padding:15px;margin:10px;margin-left:0">
+					<pre>
+me.laydate({
+	elem: '#demo',
+	choose: function (datas) {
+		alert('得到：' + datas);
+	}
+})
+					</pre>
+
+					<h4 style="margin-top:20px">日期范围限制</h4>
+					<input type="text" id="start" style="padding:15px;margin:10px;margin-left:0">-
+					<input type="text" id="end" style="padding:15px;margin:10px;margin-left:0">
+					<pre>
+var start = {
+	elem: '#start',
+	event: 'focus', 
+	min: laydate.now(), //设定最小日期为当前日期
+	max: '2099-06-16 23:59:59', //最大日期
+	istime: true,
+	istoday: false,
+	choose: function (datas) {
+		end.min = datas; //开始日选好后，重置结束日的最小日期
+		end.start = datas //将结束日的初始值设定为开始日
+	}
+};
+var end = {
+	elem: '#end',
+	event: 'focus', 
+	min: laydate.now(),
+	max: '2099-06-16 23:59:59',
+	istime: true,
+	istoday: false,
+	choose: function (datas) {
+		start.max = datas; //结束日选好后，重置开始日的最大日期
+	}
+};
+me.laydate(start);
+me.laydate(end);
+					</pre>
+				</section>
+
+			</div>
+		</div>
+	</div>
+</body>
+<script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+<script>
+	me.require(['dateChoose'], 'bundle');
+	me.require.ready('bundle', function () {
+		// 功能演示
+		me.laydate({
+			elem: '#demo',
+			event: 'focus', 
+			choose: function (datas) {
+				alert('得到：' + datas);
+			}
+		})
+		// 日期范围限制
+		var start = {
+			elem: '#start',
+			event: 'focus', 
+			min: laydate.now(), //设定最小日期为当前日期
+			max: '2099-06-16 23:59:59', //最大日期
+			istime: true,
+			istoday: false,
+			choose: function (datas) {
+				end.min = datas; //开始日选好后，重置结束日的最小日期
+				end.start = datas //将结束日的初始值设定为开始日
+			}
+		};
+		var end = {
+			elem: '#end',
+			event: 'focus', 
+			min: laydate.now(),
+			max: '2099-06-16 23:59:59',
+			istime: true,
+			istoday: false,
+			choose: function (datas) {
+				start.max = datas; //结束日选好后，重置开始日的最大日期
+			}
+		};
+		me.laydate(start);
+		me.laydate(end);
+		// 皮肤展示
+		$(".dataSkin input").each(function () {
+			me.laydate({
+				elem: $(this).get(0), //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+				event: 'focus', //响应事件。如果没有传入event，则按照默认的click
+				skin: 'default'
+			})
+		})
+		$(".dataSkin input").click(function () {
+			me.laydate({
+				elem: $(this).get(0), //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+				event: 'focus', //响应事件。如果没有传入event，则按照默认的click
+				skin: $(this).attr("skin")
+			})
+		})
+		$(".dataSkin p").hover(function () {
+			$(this).html('skin:' + $(this).siblings('input').attr("skin"))
+		}, function () {
+			$(this).html($(this).attr("ex"))
+		})
+
+	})
+
+</script>
+
+</html>

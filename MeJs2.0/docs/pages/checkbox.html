@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--单选和多选控件</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 15px 0;}
+	p{line-height:24px;}
+	b{color:#ff0000;}
+	.shilibox{
+		border:1px solid #ccc;
+		border-radius:5px;
+		margin:8px 5px;
+		padding:8px 16px;
+	}
+	.shilibox div[data-wrap="checkbox"],.shilibox div[data-wrap="radio"]{
+		margin:16px 30px 0 0;
+	}
+	.shilibox h3{
+		font-size:16px;
+		line-height:26px;
+		border-bottom:1px solid #ccc;
+		margin-bottom:8px;
+	}
+	.codeBox{
+		margin-top:8px;
+		display:none;
+	}
+	.showCode{
+		text-align:right;
+		cursor:pointer;
+	}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  单选和多选控件
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+				<li>
+				  <a href="#API">API</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>单选和多选控件</p>
+		  <p>在一组可选项中进行多项选择或者单选选中时使用</p>
+		  <p>checkbox控件必须在其承载的父元素拥有<b>data-wrap="checkbox"</b>属性</p>
+		  <p>radio控件必须在其承载的父元素拥有<b>data-wrap="radio"</b>属性</p>
+		  <p style="color:#ff0000;">注意：关于控件的“选中”和“禁用”状态在input元素上控制，语法符合W3C标准即可</p>
+		   <h4 class="h-title-4" id="code">示例</h4>
+		   <div data-wrap="layout">
+				<div data-item="col-6">		
+					<div class="shilibox">
+						<h3>默认:</h3>
+						<div data-wrap="checkbox">
+							<input type="checkbox" id="mr0">
+							<label for="mr0">
+							 默认
+							</label>
+						  </div>
+						  <div data-wrap="checkbox">
+							<input type="checkbox" id="mr1" checked>
+							<label for="mr1">
+							 默认选中
+							</label>
+						  </div>
+						  <div data-wrap="checkbox">
+							<input type="checkbox" id="mr2" disabled>
+							<label for="mr2">
+							 默认禁用
+							</label>
+						  </div>
+						  <div data-wrap="checkbox">
+							<input type="checkbox" id="mr3" checked disabled >
+							<label for="mr3">
+							 默认选中且禁用
+							</label>
+						  </div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+&lt;div data-wrap="checkbox"&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;默认&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+					<div class="shilibox">
+						<h3>活力：</h3>
+						  <div data-wrap="checkbox" data-yellow>
+							<input type="checkbox" id="ye1">
+							<label for="ye1">
+							 活力
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-yellow>
+							<input type="checkbox" checked id="ye2">
+							<label for="ye2">
+							 活力选中
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-yellow>
+							<input type="checkbox" disabled id="b3">
+							<label for="b3">
+							 活力禁用
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-yellow>
+							<input type="checkbox" checked disabled id="b3">
+							<label for="b3">
+							 活力选中且禁用
+							</label>
+						  </div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checkbox"  data-yellow&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;活力&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+					<div class="shilibox">
+						<h3> 醒目、温暖：</h3>
+						  <div data-wrap="checkbox" data-orange>
+							<input type="checkbox" id="wn1">
+							<label for="wn1">
+							 温暖
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-orange>
+							<input type="checkbox" checked id="wn2">
+							<label for="wn2">
+							 温暖选中
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-orange>
+							<input type="checkbox" disabled id="b3">
+							<label for="b3">
+							 温暖禁用
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-orange>
+							<input type="checkbox" checked disabled id="b3">
+							<label for="b3">
+							 温暖选中且禁用
+							</label>
+						  </div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checkbox"  data-orange&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;活力&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						</pre>
+					</div>
+					<div class="shilibox">
+						<h3>成功，通过，安全：</h3>
+						  <div data-wrap="checkbox" data-green>
+							<input type="checkbox" id="aq1">
+							<label for="aq1">
+							 安全
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-green>
+							<input type="checkbox" checked id="aq2">
+							<label for="aq2">
+							安全选中
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-green>
+							<input type="checkbox" disabled id="w3">
+							<label for="w3">
+							安全禁用
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-green>
+							<input type="checkbox" checked disabled id="w4">
+							<label for="w4">
+							安全选中且禁用
+							</label>
+						  </div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checkbox"  data-green&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;安全&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						</pre>
+					</div>
+					<div class="shilibox">
+						<h3>热情、警示：</h3>
+						  <div data-wrap="checkbox" data-red>
+							<input type="checkbox" id="re1">
+							<label for="re1">
+							 热情
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-red>
+							<input type="checkbox" checked id="rd2">
+							<label for="rd2">
+						   热情选中
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-red>
+							<input type="checkbox" disabled id="w3">
+							<label for="w3">
+							热情禁用
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-red>
+							<input type="checkbox" checked disabled id="w4">
+							<label for="w4">
+							热情选中且禁用
+							</label>
+						  </div> 
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checkbox"  data-red&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;热情&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						</pre>
+					</div>
+				</div>
+				
+				<div data-item="col-6">
+					<div class="shilibox">
+						<h3>清新、冷静、结构化：</h3>
+						 <div data-wrap="checkbox" data-cyan>
+							<input type="checkbox" id="q1">
+							<label for="q1">
+							 清新
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-cyan>
+							<input type="checkbox" checked id="q2">
+							<label for="q2">
+							 清新选中
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-cyan>
+							<input type="checkbox" disabled id="3">
+							<label for="a3">
+							 清新禁用
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-cyan>
+							<input type="checkbox" checked disabled id="3">
+							<label for="a3">
+							 清新选中且禁用
+							</label>
+						  </div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checkbox" data-cyan&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;默认&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+					<div class="shilibox">
+						<h3> 高雅，浪漫：</h3>
+					  <div data-wrap="checkbox" data-purple>
+						<input type="checkbox" id="gy1">
+						<label for="gy1">
+						 高雅
+						</label>
+					  </div>
+					  <div data-wrap="checkbox" data-purple>
+						<input type="checkbox" checked id="gy2">
+						<label for="gy2">
+						 高雅选中
+						</label>
+					  </div>
+					  <div data-wrap="checkbox" data-purple>
+						<input type="checkbox" disabled id="b3">
+						<label for="b3">
+						 高雅禁用
+						</label>
+					  </div>
+					  <div data-wrap="checkbox" data-purple>
+						<input type="checkbox" checked disabled id="b3">
+						<label for="b3">
+						 高雅选中且禁用
+						</label>
+					  </div>
+					 <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checkbox" data-purple&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;高雅&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+					<div class="shilibox">
+						<h3>典雅、明快、女性：</h3>
+						  <div data-wrap="checkbox" data-pink>
+							<input type="checkbox" id="pink1">
+							<label for="pink1">
+							 女性
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-pink>
+							<input type="checkbox" checked id="pink2">
+							<label for="pink2">
+							 女性选中
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-pink>
+							<input type="checkbox" disabled id="w3">
+							<label for="w3">
+							 女性禁用
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-pink>
+							<input type="checkbox" checked disabled id="w4">
+							<label for="w4">
+							 女性选中且禁用
+							</label>
+						  </div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checkbox" data-pink&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;女性&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>	
+					</div>
+					<div class="shilibox">
+						<h3>专业，科技：</h3>
+						  <div data-wrap="checkbox" data-blue>
+							<input type="checkbox" id="zy1">
+							<label for="zy1">
+							 科技
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-blue>
+							<input type="checkbox" checked id="zy2">
+							<label for="zy2">
+							科技选中
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-blue>
+							<input type="checkbox" disabled id="w3">
+							<label for="w3">
+							科技禁用
+							</label>
+						  </div>
+						  <div data-wrap="checkbox" data-blue>
+							<input type="checkbox" checked disabled id="w4">
+							<label for="w4">
+							科技选中且禁用
+							</label>
+						  </div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checkbox" data-blue&gt;
+    &lt;input type="checkbox" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;专业&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+				</div>
+			</div>
+			<h4 class="h-title-4" id="theme">Radio单选框</h4>
+			<p>用于在多个备选项中选中单个状态。</p>
+					   <div data-wrap="layout">
+				<div data-item="col-6">		
+					<div class="shilibox">
+						<h3>默认:</h3>
+						<div data-wrap="radio">
+							<input type="radio" id="r-1">
+							<label for="r-1">
+							 默认
+							</label>
+						  </div>
+						  <div data-wrap="radio">
+							<input type="radio" id="r-2" checked>
+							<label for="r-2">
+							 默认选中
+							</label>
+						  </div>
+						  <div data-wrap="radio">
+							<input type="radio" id="mr2" disabled>
+							<label for="mr2">
+							 默认禁用
+							</label>
+						  </div>
+						  <div data-wrap="radio">
+							<input type="radio" id="mr3" checked disabled >
+							<label for="mr3">
+							 默认选中且禁用
+							</label>
+						  </div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+&lt;div data-wrap="radio"&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;默认&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+					<div class="shilibox">
+						<h3>活力：</h3>
+						  <div data-wrap="radio" data-yellow>
+							<input type="radio" id="r-ye1">
+							<label for="r-ye1">
+							 活力
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-yellow>
+							<input type="radio" checked id="r-ye2">
+							<label for="r-ye2">
+							 活力选中
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-yellow>
+							<input type="radio" disabled id="r-b3">
+							<label for="r-b3">
+							 活力禁用
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-yellow>
+							<input type="radio" checked disabled id="r-b3">
+							<label for="r-b3">
+							 活力选中且禁用
+							</label>
+						  </div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="checradiokbox"  data-yellow&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;活力&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+					<div class="shilibox">
+						<h3> 醒目、温暖：</h3>
+						  <div data-wrap="radio" data-orange>
+							<input type="radio" id="r-wn1">
+							<label for="r-wn1">
+							 温暖
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-orange>
+							<input type="radio" checked id="r-wn2">
+							<label for="r-wn2">
+							 温暖选中
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-orange>
+							<input type="radio" disabled id="r-b3">
+							<label for="r-b3">
+							 温暖禁用
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-orange>
+							<input type="radio" checked disabled id="r-b3">
+							<label for="r-b3">
+							 温暖选中且禁用
+							</label>
+						  </div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="radio"  data-orange&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;活力&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						</pre>
+					</div>
+					<div class="shilibox">
+						<h3>成功，通过，安全：</h3>
+						  <div data-wrap="radio" data-green>
+							<input type="radio" id="r-aq1">
+							<label for="r-aq1">
+							 安全
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-green>
+							<input type="radio" checked id="r-aq2">
+							<label for="r-aq2">
+							安全选中
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-green>
+							<input type="radio" disabled id="w3">
+							<label for="w3">
+							安全禁用
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-green>
+							<input type="radio" checked disabled id="w4">
+							<label for="w4">
+							安全选中且禁用
+							</label>
+						  </div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="radio"  data-green&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;安全&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						</pre>
+					</div>
+					<div class="shilibox">
+						<h3>热情、警示：</h3>
+						  <div data-wrap="radio" data-red>
+							<input type="radio" id="r-re1">
+							<label for="r-re1">
+							 热情
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-red>
+							<input type="radio" checked id="r-rd2">
+							<label for="r-rd2">
+						   热情选中
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-red>
+							<input type="radio" disabled id="w3">
+							<label for="w3">
+							热情禁用
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-red>
+							<input type="radio" checked disabled id="w4">
+							<label for="w4">
+							热情选中且禁用
+							</label>
+						  </div> 
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="radio"  data-red&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;热情&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						</pre>
+					</div>
+				</div>
+				
+				<div data-item="col-6">
+					<div class="shilibox">
+						<h3>清新、冷静、结构化：</h3>
+						 <div data-wrap="radio" data-cyan>
+							<input type="radio" id="r-q1">
+							<label for="r-q1">
+							 清新
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-cyan>
+							<input type="radio" checked id="q2">
+							<label for="q2">
+							 清新选中
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-cyan>
+							<input type="radio" disabled id="3">
+							<label for="a3">
+							 清新禁用
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-cyan>
+							<input type="radio" checked disabled id="3">
+							<label for="a3">
+							 清新选中且禁用
+							</label>
+						  </div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="radio" data-cyan&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;默认&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+					<div class="shilibox">
+						<h3> 高雅，浪漫：</h3>
+					  <div data-wrap="radio" data-purple>
+						<input type="radio" id="r-gy1">
+						<label for="r-gy1">
+						 高雅
+						</label>
+					  </div>
+					  <div data-wrap="radio" data-purple>
+						<input type="radio" checked id="r-gy2">
+						<label for="r-gy2">
+						 高雅选中
+						</label>
+					  </div>
+					  <div data-wrap="radio" data-purple>
+						<input type="radio" disabled id="r-b3">
+						<label for="r-b3">
+						 高雅禁用
+						</label>
+					  </div>
+					  <div data-wrap="radio" data-purple>
+						<input type="radio" checked disabled id="b3">
+						<label for="b3">
+						 高雅选中且禁用
+						</label>
+					  </div>
+					 <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="radio" data-purple&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;高雅&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+					<div class="shilibox">
+						<h3>典雅、明快、女性：</h3>
+						  <div data-wrap="radio" data-pink>
+							<input type="radio" id="r-pink1">
+							<label for="r-pink1">
+							 女性
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-pink>
+							<input type="radio" checked id="r-pink2">
+							<label for="r-pink2">
+							 女性选中
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-pink>
+							<input type="radio" disabled id="w3">
+							<label for="w3">
+							 女性禁用
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-pink>
+							<input type="radio" checked disabled id="w4">
+							<label for="w4">
+							 女性选中且禁用
+							</label>
+						  </div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="radio" data-pink&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;女性&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>	
+					</div>
+					<div class="shilibox">
+						<h3>专业，科技：</h3>
+						  <div data-wrap="radio" data-blue>
+							<input type="radio" id="r-zy1">
+							<label for="r-zy1">
+							 科技
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-blue>
+							<input type="radio" checked id="r-zy2">
+							<label for="r-zy2">
+							科技选中
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-blue>
+							<input type="radio" disabled id="r-w3">
+							<label for="r-w3">
+							科技禁用
+							</label>
+						  </div>
+						  <div data-wrap="radio" data-blue>
+							<input type="radio" checked disabled id="w4">
+							<label for="w4">
+							科技选中且禁用
+							</label>
+						  </div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div><pre class="codeBox">
+&lt;div data-wrap="radio" data-blue&gt;
+    &lt;input type="radio" id="mr0"&gt; 
+    &lt;label for="mr0"&gt;专业&lt;/label&gt;
+&lt;/div&gt;
+------------------------------------------
+//选中(checked), 禁用(disabled) 请将对应的属性加到input上即可;
+						  </pre>
+					</div>
+				</div>
+			</div>
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+	$(".showCode").bind("click",function(){
+		var codebox = $(this).next("pre.codeBox");
+		if(codebox.is(":visible")){
+			codebox.hide();
+		}else{
+			codebox.show();
+		}
+	})
+</script>

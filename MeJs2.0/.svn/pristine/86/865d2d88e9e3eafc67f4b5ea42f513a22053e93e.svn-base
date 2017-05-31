@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>me文档-组件--MeIcon</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="Generate your documentation.">
+	<script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+	<script src="../api_files/prettify.js"></script>
+	<script src="../api_files/bootstrap.js"></script>
+	<script src="../js/Components.js"></script>
+	<link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+	<link rel="stylesheet" type="text/css" href="../api_files/base.css">
+	<link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+	<style>
+		section {
+			padding-top: 13px;
+		}
+		
+		.h-title {
+			border-bottom: 1px solid #f1f1f1
+		}
+		
+		.h-title ul {
+			float: right;
+			font-size: 16px;
+			font-weight: 100;
+			list-style: none;
+			padding-top: 15px;
+		}
+		
+		.h-title ul li {
+			float: left;
+			margin: 0 5px;
+			padding-right: 10px;
+			border-right: 1px solid #f1f1f1;
+		}
+		
+		.h-title-4 {
+			padding: 20px 0 0 0;
+		}
+		
+		p {
+			line-height: 24px;
+		}
+		
+		b {
+			color: #ff0000;
+			font-weight: 900;
+		}
+		
+		#icons li {
+			display: inline-block;
+			text-align: center;
+			font-size: 30px;
+			padding: 10px;
+			cursor: pointer;
+		}
+		
+		#icons li:hover,
+		#icons li.active {
+			color: #ff6600;
+		}
+		
+		#icon-panel {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+			padding: 0px 2px 10px 2px;
+			width: 260px;
+			border-radius: 4px;
+			background: white;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+			text-align: center;
+			font-size: 14px;
+			font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+		}
+		
+		#icon-name {
+			display: block;
+			font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+			font-size: 14px;
+			text-align: center;
+			width: 100%;
+			border: 0;
+			box-shadow: none;
+			background: none;
+			cursor: pointer;
+			margin: 0px;
+		}
+		
+		#icon-panel ul {
+			margin: 10px 0;
+			padding: 0px;
+			list-style: none;
+		}
+	</style>
+	<script>
+		$(function () {
+			$("#icons li").bind("click", function () {
+				var _this = $(this);
+				var posL = _this.offset().left - 100 + "px";
+				var posT = _this.offset().top + _this.outerHeight() + "px";
+				var text = _this.attr("class");
+				if (!_this.hasClass("active")) {
+					_this.addClass("active");
+					_this.siblings().removeClass("active");
+				}
+				$("#icon-name").val(text.replace(" active", ''));
+				$("#icon-panel").css({ left: posL, top: posT });
+			})
+			$("#icon-panel-close").click(function () {
+				$("#icon-panel").css({ left: "-9999px", top: "-9999px" });
+				$("#icons li").removeClass("active");
+			})
+		})
+	</script>
+</head>
+
+<body>
+	<div class="container content">
+		<div class="row">
+			<div class="span3 bs-docs-sidebar">
+				<ul id="lists" class="nav nav-list bs-docs-sidenav">
+				</ul>
+			</div>
+			<div class="span9">
+				<section>
+					<h3 class="h-title">
+						上传组件
+						<ul class="indexs">
+							<li>
+								<a href="#explain">说明</a>
+							</li>
+							<li>
+								<a href="#code">示例</a>
+							</li>
+						</ul>
+					</h3>
+
+					<h4 class="h-title-4" id="explain">说明</h4>
+					<p>upload上传组件</p>
+					<p>功能说明：具有精简模式及高级模式，精简模式只处理上传事件，高级模式创建视图，支持拖拽上传，分组，删除等功能</p>
+
+					<h4 class="h-title-4">HTML</h4>
+					<pre>
+高级模式：&lt;div class="uploadBox" id="demo"&gt;&lt;/div&gt;
+精简模式：&lt;input type="file" id="demo"&gt;
+        &lt;input type="button" id="upload" value="确认上传"&gt;
+		  </pre>
+					<h4 class="h-title-4">JS调用-高级模式</h4>
+					<p>需要通过me.require导入menu组件js、css文件。具体见<a href="./require.html">me.require用法</a></p>
+					<pre>
+me.require(['upload&css'], 'upload'); //加载menu.js、meu.css文件
+me.require.ready('upload',function(){
+  me.upload({
+		element: "#demo",
+		url: "upload.php",  // 上传文件的路径
+		multiple: true,                    // 是否可以多个文件上传
+		dragDrop: true,                    // 是否可以拖动上传文件
+		classify: true,                    //是否开启分类
+		domDrag: true,										//是否开启拖拽
+		del: true,                    // 是否可以删除文件
+		simple: false,									//是否开启精简上传
+		finishDel: false,  				  // 是否在上传文件完成后删除预览
+		/* 外部获得的回调接口 */
+		onSelect: function (files, allFiles) {                    // 选择文件的回调方法
+		},
+		onDelete: function (file, surplusFiles) {                     // 删除一个文件的回调方法
+		},
+		onSuccess: function (file) {                    // 文件上传成功的回调方法
+		},
+		onFailure: function (file) {                    // 文件上传失败的回调方法
+		},
+		onComplete: function (responseInfo) {           // 上传完成的回调方法
+		}
+	});
+});
+		  </pre>
+					<h4 class="h-title-4">JS调用-精简模式</h4>
+					<p>需要通过me.require导入menu组件js、css文件。具体见<a href="./require.html">me.require用法</a></p>
+					<pre>
+me.require(['upload&css'], 'upload'); //加载menu.js、meu.css文件
+me.require.ready('upload',function(){
+  me.upload({
+		simple:true,       //开启精简模式
+		fileDom:'#aaa',    //选取文件元素
+		uploadDom:'#bbb',  //确认上传按钮元素
+		url :'upload.php',  //文件上传路径
+		/* 外部获得的回调接口 */
+		onSelect: function (files, allFiles) {                    // 选择文件的回调方法
+		},
+		onDelete: function (file, surplusFiles) {                     // 删除一个文件的回调方法
+		},
+		onSuccess: function (file) {                    // 文件上传成功的回调方法
+		},
+		onFailure: function (file) {                    // 文件上传失败的回调方法
+		},
+		onComplete: function (responseInfo) {           // 上传完成的回调方法
+		}
+	});
+});
+		  </pre>
+
+					<h4 class="h-title-4" id="explain">功能演示-高级版</h4>
+						<div class="uploadBox" id="demo"></div>
+
+					<h4 class="h-title-4" id="explain">功能演示-精简版</h4>
+					<div data-type="file" data-cyan style='position: relative;top: 11px;'>
+						<input type="file" id="simpleFile">
+						<i class="me-ion-o-cloud-upload-outline"></i>
+						<span>选择文件</span>
+					</div>
+					<button class="me-u-btn" id="simpleSure">确认上传</button>	
+					<img id='imgPriview' src="" alt="" style="display:none;width:100px;height:100px;margin-top:10px;">
+
+					<h4 class="h-title-4" id="explain">配置参数</h4>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>名称</th>
+								<th>说明</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>element<br>元素id或class<br/></td>
+								<td>
+									例如'#demo'
+								</td>
+							</tr>
+							<tr>
+								<td>url<br />文件上传的地址<br /></td>
+								<td>
+									例如'upload.php'
+								</td>
+							</tr>
+							<tr>
+								<td>itemWidth<br />预览元素的宽度<br /></td>
+								<td>
+									例'120px'
+								</td>
+							</tr>
+							<tr>
+								<td>itemHeight<br />预览元素的高度<br /></td>
+								<td>
+									例如'120px'
+								</td>
+							</tr>
+							<tr>
+								<td>multiple<br />是否多选<br /></td>
+								<td>
+									true/false
+								</td>
+							</tr>
+							<tr>
+								<td>dragDrop<br />是否开启拖拽上传<br /></td>
+								<td>
+									true/false
+								</td>
+							</tr>
+							<tr>
+								<td>classify<br />是否开启分类<br /></td>
+								<td>
+									true/false
+								</td>
+							</tr>
+							<tr>
+								<td>domDrag<br />是否允许拖拽文件分组<br /></td>
+								<td>
+									true/false
+								</td>
+							</tr>
+							<tr>
+								<td>del<br />是否可以删除文件<br /></td>
+								<td>
+									true/false
+								</td>
+							</tr>
+							<tr>
+								<td>finishDel<br />是否在文件上传完成后删除预览<br /></td>
+								<td>
+									true/false
+								</td>
+							</tr>
+							<tr>
+								<td>simple<br />是否使用精简版<br /></td>
+								<td>
+									true/false
+								</td>
+							</tr>
+							<tr>
+								<td>uploadDom<br />精简模式下，确认上传的元素<br /></td>
+								<td>
+									例如‘#demo’
+								</td>
+							</tr>
+							<tr>
+								<td>fileDom<br /><br />精简模式下，选取文件的元素</td>
+								<td>
+									例如‘#demo’
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<h4 class="h-title-4" id="explain">事件</h4>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>名称</th>
+								<th>说明</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>onSelect<br />选择文件的回调函数<br /></td>
+								<td>
+									在文件选择之后执行function(files,allfiles){}
+								</td>
+							</tr>
+							<tr>
+								<td>onDelete<br />删除文件的回调函数<br /></td>
+								<td>
+									在文件删除之后执行function(file, surplusFiles){}
+								</td>
+							</tr>
+							<tr>
+								<td>onSuccess<br />上传成功的回调函数<br /></td>
+								<td>
+									在文件上传成功之后执行function(file){}
+								</td>
+							</tr>
+							<tr>
+								<td>onFailure<br />上传失败的回调函数<br /></td>
+								<td>
+									在文件上传失败后执行function (file) {},
+								</td>
+							</tr>
+							<tr>
+								<td>onComplete<br />文件上传完成之后执行<br /></td>
+								<td>
+									function(responseInfo){}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</section>
+
+			</div>
+		</div>
+	</div>
+</body>
+<script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+<script>
+	me.require(['upload&css'], 'bundle');
+	me.require.ready('bundle', function () {
+		me.upload({
+			element: "#demo",
+			itemWidth: "120px",                 // 文件项的宽度
+			itemHeight: "100px",                 // 文件项的高度
+			url: "http://www.helloweba.com/demo/2016/dropzone/upload.php",  // 上传文件的路径
+			multiple: true,                    // 是否可以多个文件上传
+			dragDrop: true,                    // 是否可以拖动上传文件
+			classify: true,                    //是否开启分类
+			domDrag: true,										//是否开启拖拽
+			del: true,                    // 是否可以删除文件
+			simple: false,									//是否开启精简上传
+			finishDel: false,  				  // 是否在上传文件完成后删除预览
+			/* 外部获得的回调接口 */
+			onSelect: function (files, allFiles) {                    // 选择文件的回调方法
+			},
+			onDelete: function (file, surplusFiles) {                     // 删除一个文件的回调方法
+			},
+			onSuccess: function (file) {                    // 文件上传成功的回调方法
+			},
+			onFailure: function (file) {                    // 文件上传失败的回调方法
+			},
+			onComplete: function (responseInfo) {           // 上传完成的回调方法
+			}
+		});
+
+		me.upload({
+			simple:true,
+			fileDom:'#simpleFile',
+			uploadDom:'#simpleSure',
+			url:'upload.php',
+			onSelect:function(file,allfile,url){
+				$("#imgPriview").attr("src",url[0]).css("display",'block');
+			}
+		})
+	})
+
+</script>
+
+</html>

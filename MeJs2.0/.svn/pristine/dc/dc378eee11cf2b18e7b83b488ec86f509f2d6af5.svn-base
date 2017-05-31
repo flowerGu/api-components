@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--flex布局</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	p{line-height:24px;}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+.docs-pictures,.docs-pictures1 {
+    width: 500px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  ul{
+    list-style-type: none;
+  }
+  .docs-pictures li,.docs-pictures1 li {
+    width: 250px;
+    height: 150px;
+    float: left;
+  }
+  .docs-pictures li img,.docs-pictures1 li img {
+    width: 250px;
+    height: 150px;
+  }
+  .docs-galley1 .viewer-button-close{
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  Viewer
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>图片查看器</p>
+      <p>通过设置图片缩略图展示，点击查看大图。</p>
+      <p>功能支持：图片放大缩小（支持鼠标滚轮），拖拽、旋转翻转、全屏预览、拉伸、手动、自动播放。</p>
+      <h4 class="h-title-4" id="explain">HTML</h4>
+		  <pre>
+&lt;div&gt;
+  &lt;ul class="docs-pictures"&gt;
+    &lt;li&gt;&lt;img data-index="0" data-original="aa.jpg" src="aa.jpg" alt="Cuo Na Lake">&lt;/li&gt;
+    &lt;li&gt;&lt;img data-index="1" data-original="bb.jpg" src="bb.jpg" alt="Tibetan Plateau">&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;		  
+		  </pre>
+      <h4 class="h-title-4" id="explain">JS</h4>
+      <p>需要通过me.require导入viewer组件js、css文件。具体见<a href="./require.html">me.require用法</a></p>
+		  <pre>
+me.require(['viewer&css'], 'bundle'); //加载viewer.js、viewer.css文件
+me.require.ready('bundle',function(){
+  //pictures 为图片父元素
+  var pictures = document.querySelector('.docs-pictures');
+  //options 配置项
+  var options = {
+    url: 'data-original', //指定点击查看大图加载图片属性，可自定义。
+    inline: true //是否显示为内联展示，根据父元素宽高展示图片查看器。
+  };
+  //通过new操作符实例化me.Viewer，传入pictures（图片父元素），options配置项。
+  var viewer = new me.Viewer(pictures, options);
+});  
+		  </pre>
+      <h4 class="h-title-4" id="code">示例 inline:true</h4>
+      <p>注：实例用的iframe导入，全屏预览会有影响，默认情况下全屏预览会充满整个浏览器窗口</p>
+		   <iframe src="viewerframe.html" scrolling="no" frameborder="0" width="500" height="300"></iframe>
+      <h4 class="h-title-4" id="code">示例 inline:false</h4>
+        <div style="width: 500px;">
+        <div class="docs-galley1" style="position: relative;">
+      <ul class="docs-pictures1 clearfix">
+        <li><img data-index="0" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-1.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-1.jpg" alt="Cuo Na Lake"></li>
+        <li><img data-index="1" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-2.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-2.jpg" alt="Tibetan Plateau"></li>
+        <li><img data-index="2" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-3.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-3.jpg" alt="Jokhang Temple"></li>
+        <li><img data-index="3" data-original="https://fengyuanchen.github.io/viewerjs/images/tibet-4.jpg" src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-4.jpg" alt="Potala Palace 1"></li>
+      </ul>
+      </div>
+      </div>
+      <h4 class="h-title-4" id="code">图片查看器触发事件流程</h4>
+      <p style="font-size:14px;"><b>options配置项inline:true时触发事件：ready（第一次弹出，只执行一次）-> view -> viewed</b></p>
+      <p style="font-size:14px;"><b>options配置项inline:false时触发事件：ready（第一次弹出，只执行一次）-> show -> view -> shown -> viewed</b></p>
+      <p style="font-size:14px;"><b>关闭按钮事件：hide -> hidden</b></p>
+      <h4 class="h-title-4" id="code">API</h4>
+      <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>名称</th>
+              <th>说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>ready<br />首次加载触发方法</td>
+              <td>
+			  <pre>
+options: {
+  url: 'data-original',
+  inline: false,
+  <b>ready:  function (e) {
+    //TODO;
+  }</b>
+}	  
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>show<br />图片查看器，显示之前触发</td>
+              <td>
+			  
+			  <pre>
+options: {
+  url: 'data-original',
+  inline: false,
+  <b>show:  function (e) {
+    //TODO;
+  }</b>
+}	  
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>shown<br />图片查看器，显示之后触发</td>
+              <td>
+			  
+			  <pre>
+options: {
+  url: 'data-original',
+  inline: false,
+  <b>shown:  function (e) {
+    //TODO;
+  }</b>
+}	  
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>hide<br />图片查看器，隐藏之前触发</td>
+              <td>
+			  
+			  <pre>
+options: {
+  url: 'data-original',
+  inline: false,
+  <b>hide:  function (e) {
+    //TODO;
+  }</b>
+}	  
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>hidden<br />图片查看器，隐藏之后触发</td>
+              <td>
+			  
+			  <pre>
+options: {
+  url: 'data-original',
+  inline: false,
+  <b>hidden:  function (e) {
+    //TODO;
+  }</b>
+}	  
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>view<br />图片查看器，DOM图片渲染之前触发</td>
+              <td>
+			  
+			  <pre>
+options: {
+  url: 'data-original',
+  inline: false,
+  <b>view:  function (e) {
+    //TODO;
+  }</b>
+}	  
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>viewed<br />图片查看器，DOM图片渲染之后触发</td>
+              <td>
+			  
+			  <pre>
+options: {
+  url: 'data-original',
+  inline: false,
+  <b>viewed:  function (e) {
+    //TODO;
+  }</b>
+}	  
+			  </pre>
+			  </td>
+            </tr>
+			
+            </tbody>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  me.require(['viewer&css'], 'bundle');
+  me.require.ready('bundle',function(){
+    var pictures1 = document.querySelector('.docs-pictures1');
+    var options1 = {
+    // inline: true,
+    url: 'data-original',
+    inline: false,
+    ready:  function (e) {
+      console.log(e.type);
+    },
+    show:  function (e) {
+      console.log(e.type);
+    },
+    shown:  function (e) {
+      console.log(e.type);
+    },
+    hide:  function (e) {
+      console.log(e.type);
+    },
+    hidden:  function (e) {
+      console.log(e.type);
+    },
+    view:  function (e) {
+      console.log(e.type);
+    },
+    viewed:  function (e) {
+      console.log(e.type);
+      // this.viewer.zoomTo(1).rotateTo(180);
+    }
+  };
+  
+  function addEventListener(element, type, handler) {
+    if (element.addEventListener) {
+      element.addEventListener(type, handler, false);
+    } else if (element.attachEvent) {
+      element.attachEvent('on' + type, handler);
+    }
+  }
+
+  var viewer1 = new me.Viewer(pictures1, options1);
+  //viewer.destroy();
+  });
+</script>
+</html>

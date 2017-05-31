@@ -1,0 +1,493 @@
+@charset "UTF-8";
+/* ----------------------------------
+checkbox 控件必须用一个 拥有data-wrap="checkbox"的父元素
+<div data-wrap="checkbox">
+    <input type="checkbox" id="checkbox1">
+    <label for="checkbox1">
+        Check me out
+    </label>
+</div>
+----------------------------------*/
+[data-wrap="checkbox"]{
+	display: inline-block;
+}
+[data-wrap="checkbox"] label {
+  display: inline-block;
+  position: relative;
+  padding-left: 5px; 
+  cursor: pointer;
+  line-height:16px;
+}
+[data-wrap="checkbox"] label::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 0;
+  margin-left: -20px;
+  border: 1px solid #bfbfbf;
+  border-radius:2px;
+  background-color: #fff;
+}
+[data-wrap="checkbox"] label::after {
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 0;
+  top: 0;
+  margin-left: -20px;
+  padding-left: 3px;
+  padding-top: 1px;
+  font-size: 11px;
+  color: #bfbfbf;	
+}
+[data-wrap="checkbox"] input[type="checkbox"]{
+  opacity: 0;
+  z-index: 1;
+}
+/*默认选中*/
+[data-wrap="checkbox"] input[type="checkbox"]:checked + label::after{
+  font-family: "Ionicons";
+  content:"\F121";
+  font-size:14px;
+  color:#bfbfbf;
+}
+/*默认禁用*/
+[data-wrap="checkbox"] input[type="checkbox"]:disabled + label{
+	cursor: not-allowed; 
+}
+[data-wrap="checkbox"] input[type="checkbox"]:disabled + label::before{
+	background-color: #e9e9e9;
+	cursor: not-allowed; 
+}
+
+/*颜色*/
+[data-cyan] input[type="checkbox"]+ label::before{
+  background-color:#fff;
+  border-color:#008997; 
+}
+[data-cyan] input[type="checkbox"] + label::after{
+  color: #fff;
+}
+[data-cyan] input[type="checkbox"]:checked + label::before{
+  background-color:#00a2ae;
+  border-color:#008997; 
+}
+[data-cyan] input[type="checkbox"]:checked  + label::after{
+  color: #fff;
+}
+[data-cyan] input[type="checkbox"]:disabled + label::before{
+  background-color:#ebf8f9;
+  border-color:#008997; 
+}
+[data-cyan] input[type="checkbox"]:disabled  + label::after{
+  color: #bfbfbf;
+}
+/*yellow*/
+[data-yellow] input[type="checkbox"]+ label::before{
+  background-color:#fff;
+  border-color:#e09a00; 
+}
+[data-yellow] input[type="checkbox"] + label::after{
+  color: #fff;
+}
+[data-yellow] input[type="checkbox"]:checked + label::before{
+  background-color:#ffbf00;
+  border-color:#e09a00; 
+}
+[data-yellow] input[type="checkbox"]:checked  + label::after{
+  color: #fff;
+}
+[data-yellow] input[type="checkbox"]:disabled + label::before{
+  background-color:#fffaeb;
+  border-color:#e09a00; 
+}
+[data-yellow] input[type="checkbox"]:disabled  + label::after{
+  color: #bfbfbf;
+}
+/*purple*/
+[data-purple] input[type="checkbox"]+ label::before{
+  background-color:#fff;
+  border-color:#6252cd; 
+}
+[data-purple] input[type="checkbox"] + label::after{
+  color: #fff;
+}
+[data-purple] input[type="checkbox"]:checked + label::before{
+  background-color:#7265e6;
+  border-color:#6252cd; 
+}
+[data-purple] input[type="checkbox"]:checked  + label::after{
+  color: #fff;
+}
+[data-purple] input[type="checkbox"]:disabled + label::before{
+  background-color:#f4f3fd;
+  border-color:#6252cd; 
+}
+[data-purple] input[type="checkbox"]:disabled  + label::after{
+  color: #bfbfbf;
+}
+/*orange*/
+[data-orange] input[type="checkbox"]+ label::before{
+  background-color:#fff;
+  border-color:#d75000; 
+}
+[data-orange] input[type="checkbox"] + label::after{
+  color: #fff;
+}
+[data-orange] input[type="checkbox"]:checked + label::before{
+  background-color:#f56a00;
+  border-color:#d75000; 
+}
+[data-orange] input[type="checkbox"]:checked  + label::after{
+  color: #fff;
+}
+[data-orange] input[type="checkbox"]:disabled + label::before{
+  background-color:#fef3eb;
+  border-color:#d75000; 
+}
+[data-orange] input[type="checkbox"]:disabled  + label::after{
+  color: #bfbfbf;
+}
+/*pink*/
+[data-pink] input[type="checkbox"]+ label::before{
+  background-color:#fff;
+  border-color:#dc277d; 
+}
+[data-pink] input[type="checkbox"] + label::after{
+  color: #fff;
+}
+[data-pink] input[type="checkbox"]:checked + label::before{
+  background-color:#f5317f;
+  border-color:#dc277d; 
+}
+[data-pink] input[type="checkbox"]:checked  + label::after{
+  color: #fff;
+}
+[data-pink] input[type="checkbox"]:disabled + label::before{
+  background-color:#feeff5;
+  border-color:#dc277d; 
+}
+[data-pink] input[type="checkbox"]:disabled  + label::after{
+  color: #bfbfbf;
+}
+/*blue*/
+[data-blue] input[type="checkbox"]+ label::before{
+  background-color:#fff;
+  border-color:#0e77ca; 
+}
+[data-blue] input[type="checkbox"] + label::after{
+  color: #fff;
+}
+[data-blue] input[type="checkbox"]:checked + label::before{
+  background-color:#108ee9;
+  border-color:#0e77ca; 
+}
+[data-blue] input[type="checkbox"]:checked  + label::after{
+  color: #fff;
+}
+[data-blue] input[type="checkbox"]:disabled + label::before{
+  background-color:#ecf6fd;
+  border-color:#0e77ca; 
+}
+[data-blue] input[type="checkbox"]:disabled  + label::after{
+  color: #bfbfbf;
+}
+/*green*/
+[data-green] input[type="checkbox"]+ label::before{
+  background-color:#fff;
+  border-color:#00924c; 
+}
+[data-green] input[type="checkbox"] + label::after{
+  color: #fff;
+}
+[data-green] input[type="checkbox"]:checked + label::before{
+  background-color:#00a854;
+  border-color:#00924c; 
+}
+[data-green] input[type="checkbox"]:checked  + label::after{
+  color: #fff;
+}
+[data-green] input[type="checkbox"]:disabled + label::before{
+  background-color:#ebf8f2;
+  border-color:#00924c; 
+}
+[data-green] input[type="checkbox"]:disabled  + label::after{
+  color: #bfbfbf;
+}
+/*red*/
+[data-red] input[type="checkbox"]+ label::before{
+  background-color:#fff;
+  border-color:#d73435; 
+}
+[data-red] input[type="checkbox"] + label::after{
+  color: #fff;
+}
+[data-red] input[type="checkbox"]:checked + label::before{
+  background-color:#f04134;
+  border-color:#d73435; 
+}
+[data-red] input[type="checkbox"]:checked  + label::after{
+  color: #fff;
+}
+[data-red] input[type="checkbox"]:disabled + label::before{
+  background-color:#fef0ef;
+  border-color:#d73435; 
+}
+[data-red] input[type="checkbox"]:disabled  + label::after{
+  color: #bfbfbf;
+}
+
+
+/*radio*/
+[data-wrap="radio"]{
+	display: inline-block;
+}  
+[data-wrap="radio"] label {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  padding-left: 5px;
+  cursor: pointer;
+}
+[data-wrap="radio"] label::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 0;
+  margin-left: -20px;
+  border: 1px solid #5a5a5a;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-transition: border 0.15s ease-in-out;
+  -o-transition: border 0.15s ease-in-out;
+      transition: border 0.15s ease-in-out; 
+}
+[data-wrap="radio"] label::after {
+  display: inline-block;
+  position: absolute;
+  content: " ";
+  width: 11px;
+  height: 11px;
+  left: 3px;
+  top: 3px;
+  margin-left: -20px;
+  border-radius: 50%;
+  background-color:#5a5a5a;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  transform: scale(0, 0);
+  -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+  -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+  -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+      transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33); 
+}
+[data-wrap="radio"] input[type="radio"] {
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+[data-wrap="radio"] input[type="radio"]:focus + label::before {
+	outline:none;
+}
+[data-wrap="radio"] input[type="radio"]:checked + label::after {
+  -webkit-transform: scale(0.8,0.8);
+  -ms-transform: scale(0.8,0.8);
+  -o-transform: scale(0.8,0.8);
+      transform: scale(0.8,0.8); 
+}
+[data-wrap="radio"] input[type="radio"]:disabled {
+    cursor: not-allowed;
+}
+[data-wrap="radio"] input[type="radio"]:disabled + label {
+    cursor: not-allowed; 
+}
+[data-wrap="radio"] input[type="radio"]:disabled + label::before {
+	background:#f5f5f5;
+    cursor: not-allowed; 
+}
+[data-wrap="radio"] input[type="radio"]:disabled + label::after {
+	background:#bfbfbf;
+    cursor: not-allowed; 
+}
+/*颜色*/
+[data-cyan] input[type="radio"]+ label::before{
+  background-color:#fff;
+  border-color:#00707f; 
+}
+[data-cyan] input[type="radio"] + label::after{
+  color: #fff;
+}
+[data-cyan] input[type="radio"]:checked + label::before{
+  background-color:#fff;
+  border-color:#00707f; 
+}
+[data-cyan] input[type="radio"]:checked  + label::after{
+  background:#00a2ae;
+}
+[data-cyan] input[type="radio"]:disabled + label::before{
+  background-color:#ebf8f9;
+  border-color:#00707f; 
+}
+[data-cyan] input[type="radio"]:disabled  + label::after{
+  background:#a7dfe3;
+}
+/*yellow*/
+[data-yellow] input[type="radio"]+ label::before{
+  background-color:#fff;
+  border-color:#e09a00; 
+}
+[data-yellow] input[type="radio"] + label::after{
+  color: #fff;
+}
+[data-yellow] input[type="radio"]:checked + label::before{
+  background-color:#fff;
+  border-color:#e09a00; 
+}
+[data-yellow] input[type="radio"]:checked  + label::after{
+  background:#e09a00;
+}
+[data-yellow] input[type="radio"]:disabled + label::before{
+  background-color:#fffaeb;
+  border-color:#e09a00; 
+}
+[data-yellow] input[type="radio"]:disabled  + label::after{
+  background:#ffdd76;
+}
+/*purple*/
+[data-purple] input[type="radio"]+ label::before{
+  background-color:#fff;
+  border-color:#6252cd; 
+}
+[data-purple] input[type="radio"] + label::after{
+  background:#6252cd;
+}
+[data-purple] input[type="radio"]:checked + label::before{
+  background-color:#fff;
+  border-color:#6252cd; 
+}
+[data-purple] input[type="radio"]:checked  + label::after{
+  color: #fff;
+}
+[data-purple] input[type="radio"]:disabled + label::before{
+  background-color:#f4f3fd;
+  border-color:#6252cd; 
+}
+[data-purple] input[type="radio"]:disabled  + label::after{
+  background:#cfcaf6;
+}
+/*orange*/
+[data-orange] input[type="radio"]+ label::before{
+  background-color:#fff;
+  border-color:#d75000; 
+}
+[data-orange] input[type="radio"] + label::after{
+  background:#d75000;
+}
+[data-orange] input[type="radio"]:checked + label::before{
+  background-color:#fff;
+  border-color:#d75000; 
+}
+[data-orange] input[type="radio"]:checked  + label::after{
+  color: #fff;
+}
+[data-orange] input[type="radio"]:disabled + label::before{
+  background-color:#fef3eb;
+  border-color:#d75000; 
+}
+[data-orange] input[type="radio"]:disabled  + label::after{
+  background:#fccca7;
+}
+/*pink*/
+[data-pink] input[type="radio"]+ label::before{
+  background-color:#fff;
+  border-color:#dc277d; 
+}
+[data-pink] input[type="radio"] + label::after{
+  color: #fff;
+}
+[data-pink] input[type="radio"]:checked + label::before{
+  background-color:#fff;
+  border-color:#dc277d; 
+}
+[data-pink] input[type="radio"]:checked  + label::after{
+  background:#c11c7b;
+}
+[data-pink] input[type="radio"]:disabled + label::before{
+  background-color:#feeff5;
+  border-color:#dc277d; 
+}
+[data-pink] input[type="radio"]:disabled  + label::after{
+  background:#fcb8d3;
+}
+/*blue*/
+[data-blue] input[type="radio"]+ label::before{
+  background-color:#fff;
+  border-color:#0e77ca; 
+}
+[data-blue] input[type="radio"] + label::after{
+  color: #fff;
+}
+[data-blue] input[type="radio"]:checked + label::before{
+  background-color:#fff;
+  border-color:#0e77ca; 
+}
+[data-blue] input[type="radio"]:checked  + label::after{
+  background:#0c60aa;
+}
+[data-blue] input[type="radio"]:disabled + label::before{
+  background-color:#ecf6fd;
+  border-color:#0e77ca; 
+}
+[data-blue] input[type="radio"]:disabled  + label::after{
+  background:#add8f7;
+}
+/*green*/
+[data-green] input[type="radio"]+ label::before{
+  background-color:#fff;
+  border-color:#00924c; 
+}
+[data-green] input[type="radio"] + label::after{
+  background:#007b43;
+}
+[data-green] input[type="radio"]:checked + label::before{
+  background-color:#fff;
+  border-color:#00924c; 
+}
+[data-green] input[type="radio"]:checked  + label::after{
+  color: #fff;
+}
+[data-green] input[type="radio"]:disabled + label::before{
+  background-color:#ebf8f2;
+  border-color:#00924c; 
+}
+[data-green] input[type="radio"]:disabled  + label::after{
+  background:#a7e1c4;
+}
+/*red*/
+[data-red] input[type="radio"]+ label::before{
+  background-color:#fff;
+  border-color:#d73435; 
+}
+[data-red] input[type="radio"] + label::after{
+  background:#bd2636;
+}
+[data-red] input[type="radio"]:checked + label::before{
+  background-color:#fff;
+  border-color:#d73435; 
+}
+[data-red] input[type="radio"]:checked  + label::after{
+  color: #fff;
+}
+[data-red] input[type="radio"]:disabled + label::before{
+  background-color:#fef0ef;
+  border-color:#d73435; 
+}
+[data-red] input[type="radio"]:disabled  + label::after{
+  background:#fabeb9;
+}

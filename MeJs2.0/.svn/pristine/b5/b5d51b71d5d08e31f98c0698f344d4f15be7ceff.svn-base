@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--SELECT</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	
+	
+	.layout{
+		width:865px;
+		background:url(../images/layout.png) repeat-y;
+	}
+	[data-item^="col-"]{
+		background:rgba(0,160,233,.8);
+		font-size:18px;
+		color:#fff;
+		min-height:45px;
+		line-height:45px;
+		text-align:center;
+	}
+	[data-wrap="layout"]{
+		margin-bottom:20px;
+	}
+	.layoutBg{
+		background:rgba(255,255,255,.7);
+		color:#000;
+	}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+	.codeBox{
+	background:none;
+	text-align:left;
+	}
+	.codeStyle{
+	padding-left:10px;background:none;
+	}
+	.codeStyle [data-item^="col-"]{
+	background:none; border:1px solid #ff6600;
+	}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  默认SELECT
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+				<li>
+				  <a href="#theme">主题</a>
+				</li>
+				<li>
+				  <a href="#API">API</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>selec控件</p>
+		  <p>使用是请用 <b>me.require</b> 方法按需加载到页面</p>
+		  <p>请注意：select标签必须包含<b>data-not="true"</b>属性，表示要替换该select控件</p>
+		   <h4 class="h-title-4" id="code">示例</h4>
+		   <div data-wrap="layout">
+				<div data-item="col-8" class="codeBox">
+		  <pre>
+&lt;select data-not="true" data-w="200" data-h="40" data-ev="click" id="cctv"&gt;
+	&lt;option value="001"&gt;选项一&lt;/option&gt;
+	&lt;option  value="002"&gt;选项二&lt;/option&gt;
+	&lt;option value="003" selected&gt;默认选中&lt;/option&gt;
+	&lt;option value="001"&gt;选项三&lt;/option&gt;
+	&lt;option  value="002"  disabled&gt;禁用选项&lt;/option&gt;
+	&lt;option value="001"&gt;选项四&lt;/option&gt;
+	&lt;option  value="002"&gt;选项五&lt;/option&gt;
+	&lt;option value="001"&gt;选项六&lt;/option&gt;
+	&lt;option  value="002"&gt;选项七&lt;/option&gt;
+&lt;/select&gt;
+		  </pre>			
+				</div>
+				<div data-item="col-4" class="codeStyle">
+					<select data-w="200" data-h="40" data-ev="click" data-not="true" id="cctv">
+						<option value="001">选项一</option>
+						<option  value="002">选项二</option>
+						<option value="003" selected>默认选中项</option>
+						<option value="001">选项三</option>
+						<option  value="002"  disabled>禁用选项</option>
+						<option value="001">选项四</option>
+						<option  value="002">选项五</option>
+						<option value="001">选项六</option>
+						<option  value="002">选项七</option>
+					</select>
+				
+				</div>
+			</div>
+			<h4 class="h-title-4" id="theme">主题</h4>
+			<p>主题是对select外观的配置,格式如下:</p>
+			<pre>
+{
+	wrap:{
+		//键值对，对select外观的定义，涉及到带”——“的属性请按照javascript的格式书写（font-size --- fontSize）
+	},
+	menu:{
+		//键值对，对展开菜单的定义，涉及到带”——“的属性请按照javascript的格式书写（font-size --- fontSize）
+	},
+	item:{
+		//菜单项的定义
+		hover:"#ff6600",//菜单项鼠标放上的背景颜色
+		curs:"#ccc",//选中项的背景颜色
+		border:"1px solod #ccc",
+		fontSize:"14px"
+	},
+	after:function(obj){
+		//选中之后的callback，返回的obj是一个对象{parentId: "ccnv", value: "bbb", text: "test2"}
+		//parentId:select的id，value:选中项的值，text：选中项对应的文本
+	}
+}
+			</pre>
+			<h4 class="h-title-4" id="API">API</h4>
+			<p>select控件提供两个API,分别是<b>rende</b>和<b>getVal</b></p>
+			<table class="table table-bordered">
+            <thead>
+            <tr>
+              <td width="80">名称</td>
+              <td>说明</td>
+              <td>使用示例</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td width="80">rende</td>
+              <td>对页面上select控件的渲染</td>
+              <td>
+			  <pre>
+me.select.rende();
+			  </pre>
+			  <pre>
+var theme = {
+	wrap:{
+	 width:"200px"
+	},
+	menu:{
+	 borderColor:"#ff6600"
+	},
+	item:{
+	 background:"#808080"
+	},
+	after:function(obj){
+	}
+}
+me.select.rende(theme);
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td width="80">getVal</td>
+              <td>获取select控件的值.有两个参数<b>”all“</b>(字符串)和<b>控件id名</b>(字符串)两个参数</td>
+              <td>
+			  //获取页面上所有select控件的值：<br />
+			  me.select.getVal("all");<br />
+			  //获取指定select控件的值:<br />
+			  me.select.getVal("cctv")
+			  </td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+	me.require(['select'], 'bundle');
+	me.require.ready('bundle',function(){
+	  me.select.rende();
+	})
+	
+</script>

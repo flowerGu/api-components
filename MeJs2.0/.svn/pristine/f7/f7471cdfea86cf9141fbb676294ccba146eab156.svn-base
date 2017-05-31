@@ -1,0 +1,120 @@
+
+.cate-wrap {
+    height: 440px;
+    width: 210px;
+    background: #fff;
+    position: relative;
+    .cate-mt {
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #f6f6f6;
+        position: relative;
+        padding: 16px 0;
+        margin: 0 20px;
+    }
+    .cate-content-list {
+        background: #fff;
+        position: absolute;
+        top: 0;
+        left: 209px;
+        width: 501px;
+        height: 440px;
+        display: none;
+        border-radius: 4px;
+        z-index: 25500;
+        border: 1px solid #f6f6f6;
+    }
+    .cate-mc {
+        display: none;
+    }
+    .cate-title-list{
+        background: #fff;
+        position: relative;
+    }
+    .cate-title-list .current *:not(i) {
+        -webkit-transform: translateX(10px);
+        -moz-transform: translateX(10px);
+        -ms-transform: translateX(10px);
+        transform: translateX(10px);
+        -webkit-transition: all .15s ease-in-out;
+        -moz-transition: all .15s ease-in-out;
+        -ms-transition: all .15s ease-in-out;
+        transition: all .15s ease-in-out;
+    }
+    .cate-m{
+        color: rgba(0,0,0,.65);
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-bottom: 1px solid #f6f6f6;
+        position: relative;
+        z-index: 10;
+        h2{
+            font-size: 12px;
+        }
+    }
+
+    .me-ion-o-arrow-right{
+        position: absolute; 
+        right:16px;
+        top:50%;
+        margin-top:-8px;
+    }
+}
+
+
+.cate-wrap-horizontal {
+    background: #fff;
+    position: relative;
+    .cate-title-list {
+        overflow: hidden;
+    }
+    .cate-mt {
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #f6f6f6;
+        position: relative;
+        padding: 16px 0;
+        margin: 0 20px;
+    }
+    .cate-title-list .current {
+        border: 1px solid #f6f6f6;
+        border-radius: 3px;
+        border-bottom: 1px solid #fff;
+        position: relative;
+        z-index: 10;
+        background: #fff;
+        i{
+            display: none;
+        }
+    }
+    .cate-content-list {
+        background: #fff;
+        position: absolute;
+        top: 0;
+        left: 209px;
+        width: 501px;
+        height: 440px;
+        display: none;
+        z-index: 25500;
+        border-radius: 4px;
+    }
+    .cate-mc {
+        display: none;
+        border: 1px solid #f6f6f6;
+    }
+    .cate-m{
+        color: rgba(0,0,0,.65);
+        padding: 0 16px;
+        font-size: 12px;
+        line-height: 42px;
+        height: 42px;
+        overflow: hidden;
+        float: left;
+        text-overflow: ellipsis;
+        border: 1px solid #fff;
+        h2{
+            font-size: 12px;
+            float: left;
+        }
+    }
+}
+

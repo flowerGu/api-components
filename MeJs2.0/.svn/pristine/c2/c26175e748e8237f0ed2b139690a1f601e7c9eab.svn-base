@@ -1,0 +1,403 @@
+/**
+ * Flex 
+ */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+/*
+==========================================================
+                基础定义
+==========================================================
+*/
+[layout] {
+  display: -ms-flexbox;
+  display: flex; 
+}
+
+[layout*="row"],
+[layout*="column"] {
+  width: 100%;
+  max-width: 100%; 
+}
+/*
+flex-direction属性决定主轴的方向（即项目的排列方向）,四个值：
+	row（默认值）：主轴为水平方向，起点在左端。
+	row-reverse：主轴为水平方向，起点在右端。
+	column：主轴为垂直方向，起点在上沿。
+	column-reverse：主轴为垂直方向，起点在下沿。
+*/
+[layout^="row"] {
+  -ms-flex-direction: row;
+      flex-direction: row; 
+}
+[layout*="row"][layout*="reverse"] {
+  -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse; 
+}
+
+[layout^="column"] {
+  -ms-flex-direction: column;
+      flex-direction: column; 
+}
+[layout*="column"][layout*="reverse"] {
+  -ms-flex-direction: column-reverse;
+      flex-direction: column-reverse; 
+}
+/*
+flex-wrap属性默认情况下项目排列在轴线上，该属性决定项目如何换行
+	none : 不换行
+	wrap : 换行,第一行在上面 
+	wrap-reverse : 换行,第一行在下面
+*/
+[layout*="rows"],
+[layout*="columns"] {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; 
+}
+
+[layout="none"] {
+  -ms-flex: none;
+      flex: none; 
+}
+
+/*
+justify-content属性定义了项目在主轴上的对齐方式。五个值：
+	flex-start（默认值）：左对齐
+	flex-end：右对齐
+	center： 居中
+	space-between：两端对齐，项目之间的间隔都相等。
+	space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍
+*/
+[layout*="column"][layout*="top-"],
+[layout*="row"][layout*="-left"] {
+  -ms-flex-pack: start;
+      justify-content: flex-start; 
+}
+
+[layout~="centered"],
+[layout*="column"][layout*="center-"],
+[layout*="row"][layout*="-center"] {
+  -ms-flex-pack: center;
+      justify-content: center; 
+}
+
+[layout*="column"][layout*="bottom-"],
+[layout*="row"][layout*="-right"] {
+  -ms-flex-pack: end;
+      justify-content: flex-end; 
+}
+
+[layout*="column"][layout*="spread-"],
+[layout*="row"][layout*="-spread"] {
+  -ms-flex-pack: distribute;
+      justify-content: space-around; 
+}
+
+[layout*="column"][layout*="justify-"],
+[layout*="row"][layout*="-justify"] {
+  -ms-flex-pack: justify;
+      justify-content: space-between; 
+}
+
+/*
+align-items属性定义项目在交叉轴上如何对齐。5个值，具体的对齐方式与交叉轴的方向有关。
+	flex-start：交叉轴的起点对齐。
+	flex-end：交叉轴的终点对齐。
+	center：交叉轴的中点对齐。
+	baseline: 项目的第一行文字的基线对齐。
+	stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
+*/
+[layout*="column"][layout*="-left"],
+[layout*="row"][layout*="top-"] {
+  -ms-flex-align: start;
+      -ms-grid-row-align: flex-start;
+      align-items: flex-start; 
+}
+
+[layout~="centered"],
+[layout*="column"][layout*="-center"],
+[layout*="row"][layout*="center-"] {
+  -ms-flex-align: center;
+      -ms-grid-row-align: center;
+      align-items: center; 
+}
+
+[layout*="column"][layout*="-right"],
+[layout*="row"][layout*="bottom-"] {
+  -ms-flex-align: end;
+      -ms-grid-row-align: flex-end;
+      align-items: flex-end; 
+}
+
+[layout*="column"][layout*="-stretch"],
+[layout*="row"][layout*="stretch-"] {
+  -ms-flex-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-items: stretch; 
+}
+
+/*
+align-content属性定义了多根轴线（多行）的对齐方式。如果项目只有一根轴线（一行），该属性不起作用。6个值：
+	flex-start：与交叉轴的起点对齐。
+	flex-end：与交叉轴的终点对齐。
+	center：与交叉轴的中点对齐。
+	space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+	space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+	stretch（默认值）：轴线占满整个交叉轴。
+*/
+[layout*="rows"][layout*="top-"],
+[layout*="columns"][layout*="-left"] {
+  -ms-flex-line-pack: start;
+      align-content: flex-start; 
+}
+
+[layout*="rows"][layout*="bottom-"],
+[layout*="columns"][layout*="-right"] {
+  -ms-flex-line-pack: end;
+      align-content: flex-end; 
+}
+
+[layout*="rows"][layout*="center-"],
+[layout*="columns"][layout*="-center"] {
+  -ms-flex-line-pack: center;
+      align-content: center; 
+}
+
+[layout*="rows"][layout*="justify-"],
+[layout*="columns"][layout*="-justify"] {
+  -ms-flex-line-pack: justify;
+      align-content: space-between; 
+}
+
+[layout*="rows"][layout*="spread-"],
+[layout*="columns"][layout*="-spread"] {
+  -ms-flex-line-pack: distribute;
+      align-content: space-around; 
+}
+
+[layout*="rows"][layout*="stretch-"],
+[layout*="columns"][layout*="-stretch"] {
+  -ms-flex-line-pack: stretch;
+      align-content: stretch; 
+}
+
+/*
+IE10+ HACKS
+*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  [layout*="column"]:not([layout*="row"]) > * {
+    max-width: auto; 
+  }
+  [layout*="column"][self*="top"] {
+    height: auto !important; 
+  }
+  [self~="size-"] > * {
+    height: auto; 
+  } 
+}
+
+/*
+align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。
+默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+该属性除了auto，其他都与align-items属性完全一致。
+*/
+[layout*="column"]:not([layout*="row"]) [self*="left"],
+[layout*="row"]:not([layout*="column"]) [self*="top"] {
+  -ms-flex-item-align: start;
+      align-self: flex-start; 
+}
+
+[self~="center"] {
+  -ms-flex-item-align: center;
+      align-self: center; 
+}
+
+[layout*="column"]:not([layout*="row"]) [self*="right"],
+[layout*="row"]:not([layout*="column"]) [self*="bottom"] {
+  -ms-flex-item-align: end;
+      align-self: flex-end; 
+}
+
+[self*="stretch"] {
+  -ms-flex-item-align: stretch;
+      align-self: stretch; 
+}
+
+
+/* Container: */
+[layout][self*="center"] {
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+[layout][self*="right"] {
+  margin-right: 0; 
+}
+
+[layout][self*="left"] {
+  margin-left: 0; 
+}
+
+/* Items: */
+[layout*="column"] [self*="bottom"] {
+  margin-top: auto; 
+}
+
+[layout*="column"] [self*="top"] {
+  margin-bottom: auto; 
+}
+
+[layout*="row"] [self*="left"] {
+  margin-right: auto; 
+}
+
+[layout*="row"] [self*="right"] {
+  margin-left: auto; 
+}
+
+/*
+==========================================================
+                      SELF SIZE
+==========================================================
+*/
+/* Relative size */
+[self~="size-1of5"] {
+  width: 20%; 
+}
+
+[self~="size-1of4"] {
+  width: 25%; 
+}
+
+[self~="size-1of3"] {
+  width: 33.33333%; 
+}
+
+[self~="size-2of5"] {
+  width: 40%; 
+}
+
+[self~="size-1of2"] {
+  width: 50%; 
+}
+
+[self~="size-3of5"] {
+  width: 60%; 
+}
+
+[self~="size-2of3"] {
+  width: 66.6666%; 
+}
+
+[self~="size-3of4"] {
+  width: 75%; 
+}
+
+[self~="size-4of5"] {
+  width: 80%; 
+}
+
+[self~="size-1of1"] {
+  width: 100%; 
+}
+
+/* 
+flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+	flex-grow:属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+	flex-shrink:项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+	flex-basis:在分配多余空间之前,项目占据的主轴空间.浏览器根据这个属性,计算主轴是否有多余空间.它的默认值为auto，即项目的本来大小。
+*/
+[layout*="row"][layout*="-stretch"] > *:not([self*="size-"]),
+[layout*="column"][layout*="stretch-"] > *:not([self*="size-"]),
+[self~="size-x1"] {
+  -ms-flex: 1 0 0% !important;
+      flex: 1 0 0% !important; 
+}
+
+[self~="size-x2"] {
+  -ms-flex: 2 0 0% !important;
+      flex: 2 0 0% !important; 
+}
+
+[self~="size-x3"] {
+  -ms-flex: 3 0 0% !important;
+      flex: 3 0 0% !important; 
+}
+
+[self~="size-x4"] {
+  -ms-flex: 4 0 0% !important;
+      flex: 4 0 0% !important; 
+}
+
+[self~="size-x5"] {
+  -ms-flex: 5 0 0% !important;
+      flex: 5 0 0% !important; 
+}
+
+[self~="size-x6"] {
+  -ms-flex: 6 0 0% !important;
+      flex: 6 0 0% !important; 
+}
+
+[self~="size-x7"] {
+  -ms-flex: 7 0 0% !important;
+      flex: 7 0 0% !important; 
+}
+
+[self~="size-x8"] {
+  -ms-flex: 8 0 0% !important;
+      flex: 8 0 0% !important; 
+}
+
+[self~="size-x9"] {
+  -ms-flex: 9 0 0% !important;
+      flex: 9 0 0% !important; 
+}
+
+[self*="size-auto"] {
+  -ms-flex: 1 1 auto;
+      flex: 1 1 auto; 
+}
+
+[self*="size-x0"] {
+  -ms-flex: 0 0 auto;
+      flex: 0 0 auto; 
+}
+
+/*
+order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+*/
+[self~="first"] {
+  -ms-flex-order: -1;
+      order: -1; 
+}
+
+[self~="order-1"] {
+  -ms-flex-order: 1;
+      order: 1; 
+}
+
+[self~="order-2"] {
+  -ms-flex-order: 2;
+      order: 2; 
+}
+
+[self~="order-3"] {
+  -ms-flex-order: 3;
+      order: 3;
+}
+
+[self~="last"] {
+  -ms-flex-order: 999;
+      order: 999; 
+}
+
+[layout*="column"]:not([layout*="row"]) > * {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto; 
+}

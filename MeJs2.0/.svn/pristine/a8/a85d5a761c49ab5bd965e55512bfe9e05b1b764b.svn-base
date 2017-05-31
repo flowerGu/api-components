@@ -1,0 +1,380 @@
+@charset "UTF-8";
+/*
+@input输入控件标准模式
+@代码:
+    <div data-type="norm">
+		<input type="text" placeholder="默认">
+	</div>
+@交互效果：默认,鼠标放上,获得焦点
+@验证交互：验证中,验证成功,验证失败	
+*/
+[data-type="norm"]{
+	display: inline-block;
+	position:relative;
+	margin-bottom:16px;
+	width:100%;
+}
+[data-type="norm"] input[type='text'],[data-type="norm"] input[type='password']{
+	border:1px solid #bfbfbf;
+	border-radius:3px;
+	background:#fff;
+	padding:5px;
+	font-size:14px;
+	width:100%;
+	height:35px;
+}
+[data-type="norm"] input[type='text']:focus,[data-type="norm"] input[type='password']:focus{
+	outline:0;
+	box-shadow: 0 0 0 2px rgba(154,154,154,.2);
+}
+[data-type="norm"] input[type='text']:hover,[data-type="norm"] input[type='password']:hover{
+	border-color:#919191;
+}
+[data-type="norm"]:before{
+	content: attr(data-label);
+	position:absolute;
+	left:0px;
+	top:35px;
+	font-size:12px;
+	padding:5px 0px 0px 0px;
+	height:18px;
+}
+[data-state="fail"]:after {
+	position:absolute;
+	top:9px;
+	right:0px;
+    content:"\F128";
+	display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	margin-right:5px;
+	color:#f04134;
+	font-size:20px;
+}
+[data-state="fail"]:before{
+	color:#f04134;
+}
+[data-state="success"]:after {
+	position:absolute;
+	top:8px;
+	right:0px;
+    content:"\F3FF";
+	display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	margin-right:5px;
+	color:#00a854;
+	font-size:20px;
+}
+[data-state="verify"]:after {
+	position:absolute;
+	top:9px;
+	right:0px;
+    content:"\F29C";
+	display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	animation: loadingCircle 1s infinite linear;
+	margin-right:5px;
+	color:#108ee9;
+	font-size:18px;
+}
+@-webkit-keyframes loadingCircle {
+    0% {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+@keyframes loadingCircle {
+    0% {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+/*
+@input输入控件ICON模式
+@代码:
+    <div data-type="icon">
+		<i></i>
+		<input type="text" placeholder="默认">
+	</div>
+@交互效果：默认,鼠标放上,获得焦点
+@验证交互：验证中,验证成功,验证失败	
+*/
+[data-type="icon"]{
+	display: inline-block;
+	position:relative;
+	margin-bottom:16px;
+	width:100%;
+}
+[data-type="icon"] i{
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    z-index: 1;
+    font-size: 20px;
+	color:#919191;
+}
+[data-type="icon"] input[type='text'],[data-type="icon"] input[type='password']{
+	border:1px solid #bfbfbf;
+	border-radius:3px;
+	background:#fff;
+	padding:5px;
+	font-size:14px;
+	padding-left:30px;
+	width:100%;
+	height:35px;
+}
+[data-type="icon"] input[type='text']:focus,[data-type="icon"] input[type='password']:focus{
+	outline:0;
+	box-shadow: 0 0 0 2px rgba(154,154,154,.2);
+}
+[data-type="icon"] input[type='text']:hover,[data-type="icon"] input[type='password']:hover{
+	border-color:#919191;
+}
+[data-type="icon"]:before{
+	content: attr(data-label);
+	position:absolute;
+	left:0px;
+	top:35px;
+	font-size:12px;
+	padding:5px 0px 0px 0px;
+	height:18px;
+}
+[data-type="icon"][data-state="fail"] input[type="text"],[data-type="icon"][data-state="fail"] input[type="password"]{
+	border-color:#f04134;
+}
+[data-type="icon"][data-state="fail"]:after {
+	position:absolute;
+	top:9px;
+	right:0px;
+    content:"\F128";
+	display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	margin-right:5px;
+	color:#f04134;
+	font-size:20px;
+}
+[data-type="icon"][data-state="fail"]:before{
+	color:#f04134;
+}
+[data-type="icon"][data-state="fail"] i{
+	color:#f04134;
+}
+[data-type="icon"][data-state="success"] input[type="text"],[data-type="icon"][data-state="success"] input[type="password"]{
+	border-color:#00a854;
+}
+[data-type="icon"][data-state="success"]:after {
+	position:absolute;
+	top:8px;
+	right:0px;
+    content:"\F3FF";
+	display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	margin-right:5px;
+	color:#00a854;
+	font-size:20px;
+}
+[data-type="icon"][data-state="success"] i{
+	color:#00a854;
+}
+[data-type="icon"][data-state="verify"] input[type="text"],[data-type="icon"][data-state="verify"] input[type="password"]{
+	border-color:#108ee9;
+}
+[data-type="icon"][data-state="verify"]:after {
+	position:absolute;
+	top:9px;
+	right:0px;
+    content:"\F29C";
+	display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	animation: loadingCircle 1s infinite linear;
+	margin-right:5px;
+	color:#108ee9;
+	font-size:18px;
+}
+[data-type="icon"][data-state="verify"] i{
+	color:#108ee9;
+}
+/*
+@input输入控件file模式
+@代码:
+<div data-type="file">
+	<input type="file">
+	<i class="me-ion-upload"></i>
+	<span>选择文件</span>
+</div>
+@交互效果：默认,鼠标放上,获得焦点
+@验证交互：验证中,验证成功,验证失败	
+*/
+[data-type="file"]{
+	display: inline-block;
+	position:relative;
+	border:1px solid #bfbfbf;
+	border-radius:3px;
+	background:#fff;
+	font-size:14px;
+	width:100px;
+	height:30px;
+	padding:0 8px;
+	overflow:hidden;
+}
+[data-type="file"]:hover{
+	border-color:#919191;
+}
+[data-type="file"]:hover span{
+	color:#5a5a5a;
+}
+[data-type="file"]:hover i{
+	color:#919191;
+}
+[data-type="file"] input[type="file"]{
+	width:100px;
+	opacity:0;
+	position:absolute;
+	left:0px;
+	top:2px;
+	z-index:1;
+}
+[data-type="file"] i{
+	font-size:24px;
+	line-height:27px;
+	color:#bfbfbf;
+}
+[data-type="file"] span{
+	color:#919191;
+	position:relative;top:-4px;
+}
+
+[data-type="file"][data-cyan]{
+	border-color:#008997;
+	background:#00a2ae;
+	
+}
+[data-type="file"][data-cyan]:hover,
+[data-type="file"][data-yellow]:hover,
+[data-type="file"][data-purple]:hover,
+[data-type="file"][data-orange]:hover,
+[data-type="file"][data-pink]:hover,
+[data-type="file"][data-blue]:hover,
+[data-type="file"][data-green]:hover,
+[data-type="file"][data-red]:hover{
+	opacity:0.8;
+}
+
+[data-type="file"][data-cyan] i,
+[data-type="file"][data-cyan] span,
+[data-type="file"][data-yellow] i,
+[data-type="file"][data-yellow] span,
+[data-type="file"][data-purple] i,
+[data-type="file"][data-purple] span,
+[data-type="file"][data-orange] i,
+[data-type="file"][data-orange] span,
+[data-type="file"][data-pink] i,
+[data-type="file"][data-pink] span,
+[data-type="file"][data-blue] i,
+[data-type="file"][data-blue] span,
+[data-type="file"][data-green] i,
+[data-type="file"][data-green] span,
+[data-type="file"][data-red] i,
+[data-type="file"][data-red] span{
+	color:#fff;
+}
+
+[data-type="file"][data-yellow]{
+	border-color:#e09a00;
+	background:#ffbf00;
+}
+[data-type="file"][data-purple]{
+	border-color:#6252cd;
+	background:#7265e6;
+}
+[data-type="file"][data-orange]{
+	border-color:#d75000;
+	background:#f56a00;
+}
+[data-type="file"][data-pink]{
+	border-color:#dc277d;
+	background:#f5317f;
+}
+[data-type="file"][data-blue]{
+	border-color:#0e77ca;
+	background:#108ee9;
+}
+[data-type="file"][data-green]{
+	border-color:#00924c;
+	background:#00a854;
+}
+[data-type="file"][data-red]{
+	border-color:#d73435;
+	background:#f04134;
+}

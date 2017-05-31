@@ -1,0 +1,122 @@
+/*
+ *@栅格系统布局(将“内容区域”划分成12列,每个元素占相应的列)
+ *@运用元素的属性为布局的CSS钩子,将class的编写尽量留给使用者
+ *@属性都是以data-为开头的
+ *
+ *
+ * ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
+ *      元素属性            |                           说明                                                    |
+ * ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
+ * [data-wrap="layout"]     | 布局/模块的外围,相当于父元素,必须书写                                             |
+ * ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
+ * [data-item="col-number"] | 布局元素,layout的子元素; 其值为"col-"开头,后面跟的数字(1--12)表示该元素所占的列数 |
+ * ——————————————————————————————————————————————————————————————————————————————————————————————————————————————
+ * [data-offset="number"]   | 元素偏移量(1--12),数字表示偏移的列数                                              |
+ * ——————————————————————————————————————————————————————————————————————————————————————————————————————————————  
+ *
+*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.clearfix:before,
+.clearfix:after,
+[data-wrap="layout"]:before,
+[data-wrap="layout"]:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after,
+[data-wrap="layout"]:after {
+  clear: both;
+}
+[data-wrap="layout"]{
+	padding:0px;
+	margin:0px;
+}
+[data-wrap="layout"] > [data-item^="col-"]{
+	float:left;
+}
+[data-item="col-12"] {
+  width: 100%;
+}
+[data-item="col-11"] {
+  width: 91.66666667%;
+}
+[data-item="col-10"] {
+  width: 83.33333333%;
+}
+[data-item="col-9"] {
+  width: 75%;
+}
+[data-item="col-8"]{
+  width: 66.66666667%;
+}
+[data-item="col-7"] {
+  width: 58.33333333%;
+}
+[data-item="col-6"]{
+  width: 50%;
+}
+[data-item="col-5"] {
+  width: 41.66666667%;
+}
+[data-item="col-4"] {
+  width: 33.33333333%;
+}
+[data-item="col-3"]{
+  width: 25%;
+}
+[data-item="col-2"]{
+  width: 16.66666667%;
+}
+[data-item="col-1"]{
+  width: 8.33333333%;
+}
+/*列偏移*/
+[data-wrap="layout"] > [data-offset="12"] {
+	margin-left: 100%;
+}
+[data-wrap="layout"] > [data-offset="11"] {
+	margin-left: 91.66666667%;
+}
+[data-wrap="layout"] > [data-offset="10"] {
+	margin-left: 83.33333333%;
+}
+[data-wrap="layout"] > [data-offset="9"]{
+	margin-left: 75%;
+}
+[data-wrap="layout"] > [data-offset="8"]{
+	margin-left: 66.66666667%;
+}
+[data-wrap="layout"] > [data-offset="7"] {
+	margin-left: 58.33333333%;
+}
+[data-wrap="layout"] > [data-offset="6"]{
+	margin-left: 50%;
+}
+[data-wrap="layout"] > [data-offset="5"]{
+	margin-left: 41.66666667%;
+}
+[data-wrap="layout"] > [data-offset="4"]{
+	margin-left: 33.33333333%;
+}
+[data-wrap="layout"] > [data-offset="3"]{
+	margin-left: 25%;
+}
+[data-wrap="layout"] > [data-offset="2"]{
+	margin-left: 16.66666667%;
+}
+[data-wrap="layout"] > [data-offset="1"]{
+	margin-left: 8.33333333%;
+}
+[data-wrap="layout"] > [data-offset="0"]{
+	margin-left: 0%;
+}

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--按钮</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	p{line-height:24px;}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+	.codebox{
+	border:1px solid #ccc;
+	margin:0 10px 10px 0;
+	border-radius:4px;
+	padding:10px;
+	}
+	.codebox p{
+	font-size:14px; line-height:24px;
+	}
+	.codebox pre{
+	margin-top:10px;
+	}
+	.showCode{
+		text-align:right;
+		cursor:pointer;
+		margin-top:8px;
+	}
+	.codeBoxs{
+		margin-top:8px;
+		display:none;
+	}
+	.table td pre{margin-top:8px;}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  按钮
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+				<li>
+				  <a href="#api">API</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>按钮用于开始一个即时操作,标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。</p>
+		  <p>该按钮控件内置了几种颜色和三种尺寸规格，实际项目中涉及到的颜色可能跟内置的有出入，建议在项目的具体样式中单独定义，模式如下：</p>
+		  <pre>
+.parentClass <b>.me-u-btn</b>{xxxxx}
+.parentClass <b>.me-u-btn[data-size=lg]</b>{xxxxx}
+		  </pre>
+		  <p>该控件唯一的class表述为<b>.me-u-btn</b>,其余的全部以属性的形式实现，具体属性见<a href="#api">API表格</a></p>
+		  <p>使用该按钮控件时建议用button标签作为载体，当然不只局限于buttom标签</p>
+		  <pre>
+&lt;button class="me-u-btn"&gt;这是一个按钮&lt;/button&gt;	
+&lt;div class="me-u-btn"&gt;这是一个按钮&lt;/div&gt;	  
+		  </pre>
+		  <h4 class="h-title-4" id="code">示例</h4>
+		  <div data-wrap="layout">
+				<div data-item="col-6">
+					<div class="codebox">
+					<p><strong>按钮状态：</strong>默认,锁定,loading,完成(某项操作)</p>
+					<div class="me-u-btn">默认状态</div>
+					<div class="me-u-btn" disabled>锁定状态</div>
+					<button class="me-u-btn" data-loading>加载状态</button><br /><br />
+					<button class="me-u-btn" data-finish data-color="green">完成状态</button>
+					<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+					<pre class="codeBoxs">
+&lt;button class="me-u-btn"&gt;默认状态&lt;/button&gt;	
+&lt;button class="me-u-btn" disabled&gt;锁定状态&lt;/button&gt;
+&lt;button class="me-u-btn"  data-loading&gt;加载状态&lt;/button&gt;
+&lt;button class="me-u-btn" data-finish data-color="green"&gt;加载完成&lt;/button&gt;
+					</pre>
+					</div>
+					
+					<div class="codebox">
+					<p><strong>按钮类型：</strong>主按钮、次按钮、虚线按钮，文本按钮。建议主按钮在同一个操作区域最多出现一次。</p>
+					<div class="me-u-btn">主按钮</div>
+					<div class="me-u-btn" data-type="minor" >次按钮</div>
+					<div class="me-u-btn" data-type="dashed">虚线按钮</div>
+					<div class="me-u-btn" data-type="text">文本按钮</div>
+					<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+					<pre class="codeBoxs">
+&lt;button class="me-u-btn"&gt;主按钮&lt;/button&gt;	
+&lt;button class="me-u-btn" data-type="minor"&gt;次按钮&lt;/button&gt;
+&lt;button class="me-u-btn" data-type="dashed"&gt;虚线按钮&lt;/button&gt;
+&lt;button class="me-u-btn" data-type="text"&gt;文本按钮&lt;/button&gt;
+					</pre>
+					</div>
+					
+					<div class="codebox">
+					<p><strong>按钮颜色：</strong>内置的按钮颜色必须拥有<b>data-color</b>属性，由于具体项目的特殊性，需要在项目的样式中根据实际情况自行定义</p>
+					<button class="me-u-btn" data-color=grey>中性,平稳</button>
+					<button class="me-u-btn" data-color=cyan>清新,冷静</button>
+					<button class="me-u-btn" data-color=yellow>活力,提示</button>
+					<button class="me-u-btn" data-color=purple>高雅,浪漫</button><br /><br />
+					<button class="me-u-btn" data-color=orange>醒目,温暖</button>
+					<button class="me-u-btn" data-color=pink>典雅,明快</button>
+					<button class="me-u-btn" data-color=blue>专业,科技</button>
+					<button class="me-u-btn" data-color=green>成功,安全</button><br /><br />
+					<button class="me-u-btn" data-color=red>热情,警告</button>
+					<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+					<pre class="codeBoxs">
+&lt;button class="me-u-btn" data-color=grey&gt;中性,平稳&lt;/button&gt;	
+&lt;button class="me-u-btn" data-color=cyan&gt;清新,冷静&lt;/button&gt;
+&lt;button class="me-u-btn" data-color=yellow&gt;活力,提示&lt;/button&gt;
+&lt;button class="me-u-btn" data-color=purple&gt;高雅,浪漫&lt;/button&gt;
+&lt;button class="me-u-btn" data-color=orange&gt;醒目,温暖&lt;/button&gt;
+&lt;button class="me-u-btn" data-color=pink&gt;典雅,明快&lt;/button&gt;
+&lt;button class="me-u-btn" data-color=blue&gt;专业,科技&lt;/button&gt;
+&lt;button class="me-u-btn" data-color=green&gt;成功,安全&lt;/button&gt;
+&lt;button class="me-u-btn" data-color=red&gt;热情,警告&lt;/button&gt;
+					</pre>
+					</div>
+					
+				</div>
+				<div data-item="col-6">
+					<div class="codebox">
+						<p><strong>按钮规格：</strong>大,默认(中),小, 块级按钮</p>
+						<button class="me-u-btn" data-size=lg>大按钮</button>
+						<div class="me-u-btn">默认按钮</div>
+						<div class="me-u-btn" data-size=sm>小按钮</div><br /><br />
+						<div class="me-u-btn" data-size=block>这是块级按钮</div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						<pre class="codeBoxs">
+&lt;button class="me-u-btn" data-size=lg&gt;大 按 钮&lt;/button&gt;
+&lt;button class="me-u-btn" disabled&gt;默认按钮&lt;/button&gt;
+&lt;button class="me-u-btn" data-size=sm&gt;小号按钮&lt;/button&gt;
+&lt;button class="me-u-btn" data-size=block&gt;这是块级按钮&lt;/button&gt;
+					   </pre>
+					</div>
+					
+						<div class="codebox">
+						<p><strong>图标按钮：</strong></p>
+						<p>图标按钮必须带<b>data-icon</b>属性，其值有<b>left</b> | <b>right</b> | <b> center</b>三个，分别表示icon在左边，右边，中间</p>
+						<p>icon必须以标签 i 为载体，具体的icon请直接复制<a href="meicon.html">MEIcon</a>的class即可。</p>
+						<button class="me-u-btn" data-icon="left"><i class="me-ion-o-search-strong"></i>搜索</button>
+						<div class="me-u-btn" data-type="minor" data-icon="right">详情<i class="me-ion-o-arrow-forward"></i></div>
+						<button class="me-u-btn" data-color="info" data-icon="left"><i class="me-ion-o-telephone"></i>联系电话</button><br /><br />
+						<div class="me-u-btn" data-color="warning" data-icon="center"><i class="me-ion-o-help-outline"></i></div>
+						<div class="me-u-btn" data-type="minor" data-icon="center"><i class="me-ion-power"></i></div>
+						<div class="me-u-btn" data-color="info" data-icon="center"><i class="me-ion-o-folder-outline"></i></div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						<pre class="codeBoxs">
+&lt;button class="me-u-btn" data-icon=left&gt;
+   &lt;i class="me-ion-o-search-strong"&gt;&lt;/i&gt;搜索
+&lt;/button&gt;
+&lt;button class="me-u-btn" data-icon=right&gt;
+   详情&lt;i class="me-ion-o-arrow-forward"&gt;&lt;/i&gt;
+&lt;/button&gt;
+&lt;button class="me-u-btn" data-icon=left&gt;
+   &lt;i class="me-ion-o-telephone"&gt;&lt;/i&gt;联系电话
+&lt;/button&gt;
+
+&lt;button class="me-u-btn"  data-color="warning" data-icon="center"&gt;
+   &lt;i class="me-ion-o-help-outline"&gt;&lt;/i&gt;
+&lt;/button&gt;
+&lt;button class="me-u-btn" data-type="minor" data-icon="center"&gt;
+   &lt;i class="me-ion-power"&gt;&lt;/i&gt;
+&lt;/button&gt;
+&lt;button class="me-u-btn" data-color="info" data-icon="center"&gt;
+   &lt;i class="me-ion-o-folder-outline"&gt;&lt;/i&gt;
+&lt;/button&gt;
+					   </pre>
+					</div>
+					
+				</div>
+		  </div>
+		  <div data-wrap="layout">
+			<div data-item="col-12">
+				<div class="codebox">
+					<p><strong>带下拉菜单的按钮：</strong></p>
+					<p>按钮组合使用时，推荐使用1个主操作 + n 个次操作，3个以上操作时把更多操作放到菜单中组合使用。</p>
+						<div class="me-u-btn" data-size=lg data-menu data-icon="right">
+							菜单按钮<i class="me-ion-o-arrow-down"></i>
+							<div>
+							<ul>
+								<li>菜单项一</li>
+								<li>菜单项二</li>
+								<li>菜单项三</li>
+							</ul>
+							</div>
+						</div>
+						<div class="me-u-btn" data-menu data-icon="right">
+							菜单按钮<i class="me-ion-o-arrow-down"></i>
+							<div>
+							<ul>
+								<li>菜单项一</li>
+								<li>菜单项二</li>
+								<li>菜单项三</li>
+							</ul>
+							</div>
+						</div>
+						<div class="me-u-btn" data-size=sm data-menu data-icon="right">
+							菜单按钮<i class="me-ion-o-arrow-down"></i>
+							<div>
+							<ul>
+								<li>菜单项一</li>
+								<li>菜单项二</li>
+								<li>菜单项三</li>
+							</ul>
+							</div>
+						</div>
+						<div class="me-u-btn" data-menu data-type="minor" data-icon="right">
+							菜单按钮<i class="me-ion-o-arrow-down"></i>
+							<div>
+							<ul>
+								<li>菜单项一</li>
+								<li>菜单项二</li>
+								<li>菜单项三</li>
+							</ul>
+							</div>
+						</div>
+						<div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						<pre class="codeBoxs">
+&lt;div class="me-u-btn" data-size=lg data-menu data-icon="right"&gt;
+    菜单按钮&lt;i class="me-ion-o-arrow-down"&gt;&lt;/i&gt;
+    &lt;div&gt;
+    &lt;ul&gt;
+	&lt;li&gt;菜单项一&lt;/li&gt;
+	&lt;li&gt;菜单项二&lt;/li&gt;
+	&lt;li&gt;菜单项三&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="me-u-btn" data-menu data-icon="right"&gt;
+    菜单按钮&lt;i class="me-ion-o-arrow-down"&gt;&lt;/i&gt;
+    &lt;div&gt;
+    &lt;ul&gt;
+	&lt;li&gt;菜单项一&lt;/li&gt;
+	&lt;li&gt;菜单项二&lt;/li&gt;
+	&lt;li&gt;菜单项三&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="me-u-btn" data-size=sm data-menu data-icon="right"&gt;
+    菜单按钮&lt;i class="me-ion-o-arrow-down"&gt;&lt;/i&gt;
+    &lt;div&gt;
+    &lt;ul&gt;
+	&lt;li&gt;菜单项一&lt;/li&gt;
+	&lt;li&gt;菜单项二&lt;/li&gt;
+	&lt;li&gt;菜单项三&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="me-u-btn" data-menu data-type="minor" data-icon="right"&gt;
+    菜单按钮&lt;i class="me-ion-o-arrow-down"&gt;&lt;/i&gt;
+    &lt;div&gt;
+    &lt;ul&gt;
+	&lt;li&gt;菜单项一&lt;/li&gt;
+	&lt;li&gt;菜单项二&lt;/li&gt;
+	&lt;li&gt;菜单项三&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;						
+						</pre>	
+				</div>
+			</div>	
+		  </div>
+		  <h4 class="h-title-4" id="api">API</h4>
+		  <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>名称</th>
+              <th>说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>me-u-btn</td>
+              <td>
+			  class名，按钮必须使用此class<br />
+			  <pre>
+&lt;button class="<b>me-u-btn</b>"&gt;按 钮&lt;/button&gt;				  
+			  </pre>
+			  </td>
+            </tr>
+			<tr>
+              <td>disabled</td>
+              <td>
+			  锁定属性，使按钮处于锁定状态<br />
+			  <pre>
+&lt;button class="me-u-btn" <b>disabled</b>&gt;锁定状态&lt;/button&gt;				  
+			  </pre>
+			  </td>
+            </tr>
+			<tr>
+              <td>data-loading</td>
+              <td>
+			  加载状态属性，使按钮处于加载状态<br />
+			  <pre>
+&lt;button class="me-u-btn" <b>data-loading</b>&gt;加载状态&lt;/button&gt;				  
+			  </pre>
+			  </td>
+            </tr>
+			<tr>
+              <td>data-size</td>
+              <td>
+			  规格属性，可取值 <b>lg</b>(大) | <b>sm</b>(小) | <b>block</b>(块级)<br />
+			  <pre>
+&lt;button class="me-u-btn" <b>data-size=lg</b>&gt;大号按钮&lt;/button&gt;				  
+			  </pre>
+			  <pre>
+&lt;button class="me-u-btn" <b>data-size=sm</b>&gt;小号按钮&lt;/button&gt;				  
+			  </pre>
+			  <p>块级按钮的宽度取决于它的父元素</p>
+			  <pre>
+&lt;button class="me-u-btn" <b>data-size=block</b>&gt;块级按钮&lt;/button&gt;				  
+			  </pre>
+			  </td>
+            </tr>
+			<tr>
+              <td>data-type</td>
+              <td>
+			  按钮的类型，可取值有<b>minor</b>(次按钮) | <b>dashed</b>(虚线按钮) | <b>text</b>(文本按钮) 不设置data-type属性默认为主按钮<br />
+			  <pre>
+&lt;button class="me-u-btn" <b>data-type=minor</b>&gt;次级按钮&lt;/button&gt;
+			  </pre>
+			  <pre>
+&lt;button class="me-u-btn" <b>data-type=dashed</b>&gt;虚线按钮&lt;/button&gt;
+			  </pre>
+			  <pre>
+&lt;button class="me-u-btn" <b>data-type=text</b>&gt;文本按钮&lt;/button&gt;			  
+			  </pre>
+			  </td>
+            </tr>
+			<tr>
+              <td>data-icon</td>
+              <td>
+			  图标按钮，可取值有<b>left</b>(图标在左边) | <b>right</b>(图标在右边) | <b>center</b>(纯图标按钮) <br />
+			  <pre> 
+&lt;button class="me-u-btn" <b>data-icon=left</b>&gt;
+   &lt;i class="me-ion-o-search-strong"&gt;&lt;/i&gt;搜索
+&lt;/button&gt;
+			 </pre>
+			 <pre>
+&lt;button class="me-u-btn" <b>data-icon=right</b>&gt;
+   详情&lt;i class="me-ion-o-arrow-forward"&gt;&lt;/i&gt;
+&lt;/button&gt;
+			 </pre>
+			 <pre>
+&lt;button class="me-u-btn"  data-color="warning" <b>data-icon="center"</b>&gt;
+   &lt;i class="me-ion-o-help-outline"&gt;&lt;/i&gt;
+&lt;/button&gt;
+             </pre>
+			  </td>
+            </tr>
+			<tr>
+              <td>data-menu</td>
+              <td>
+			  带菜单的按钮<br />
+			  <pre> 
+&lt;div class="me-u-btn" data-size=lg <b>data-menu</b> data-icon="right"&gt;
+    菜单按钮&lt;i class="me-ion-o-arrow-down"&gt;&lt;/i&gt;
+    &lt;div&gt;
+    &lt;ul&gt;
+	&lt;li&gt;菜单项一&lt;/li&gt;
+	&lt;li&gt;菜单项二&lt;/li&gt;
+	&lt;li&gt;菜单项三&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+             </pre>
+			  </td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+$(".showCode").bind("click",function(){
+	var codebox = $(this).next("pre.codeBoxs");
+	if(codebox.is(":visible")){
+		codebox.hide();
+	}else{
+		codebox.show();
+	}
+})
+</script>

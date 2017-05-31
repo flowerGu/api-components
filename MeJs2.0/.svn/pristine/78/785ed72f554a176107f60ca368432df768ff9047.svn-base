@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--级联选择</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	
+	#container{
+		width:200px;
+	}
+	.layout{
+		width:865px;
+		background:url(../images/layout.png) repeat-y;
+	}
+	[data-item^="col-"]{
+		background:rgba(0,160,233,.8);
+		font-size:14px;
+		color:#fff;
+		min-height:45px;
+		line-height:45px;
+		text-align:center;
+	}
+	[data-wrap="layout"]{
+		margin-bottom:20px;
+	}
+	.layoutBg{
+		background:rgba(255,255,255,.7);
+		color:#000;
+	}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+	.codeBox{
+	background:none;
+	text-align:left;
+	}
+	.codeStyle{
+	padding-left:10px;background:none;
+	}
+	.codeStyle [data-item^="col-"]{
+	background:none; border:1px solid #ff6600;
+	}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  级联选择
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+				<li>
+				  <a href="#theme">主题</a>
+				</li>
+				<li>
+				  <a href="#API">API</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>级联选择控件</p>
+		  <p>使用时请用 <b>me.require</b> 方法按需加载到页面</p>
+		  <p>请注意：</p>
+		   
+			 <h5 style="padding:5px 10px;">HTML</h5>
+			 <div data-wrap="layout">
+				<div class="codeBox">
+					<pre>&lt;div id="container"&gt;
+&lt;/div&gt;
+					</pre>
+				</div>
+			</div>
+			 <h5 style="padding:5px 10px;">JS</h5>
+		   <div data-wrap="layout" style="margin-bottom:0">
+				<div style="width:870px;" class="codeBox">
+					<pre>me.cascader.init({
+	ele: '#container',
+	num: 3,
+	placeholder: 'please select',
+	cb: function () {
+	  for(var i=0;i < json.length;i++){
+           var str='&lt;li class="me-cascader-menu-item me-ion-o-arrow-right" title="'+json[i].label+'">'+json[i].value+'&lt;/li&gt;';
+           $('#me-cascade-list-wrap-container ul').eq(0).append(str)
+        }      
+           $('#me-cascade-list-wrap-container').on('click', 'li', function () {                
+              var indexPa = $(this).parent().index();
+              var index = $(this).index();
+              if(indexPa < 2){
+                setTimeout(function(){
+                  //模拟ajax调取数据
+                  $('#me-cascade-list-wrap-container li').removeClass('me-ion-load-c').addClass('me-ion-o-arrow-right');
+                  $(this).addClass('me-ion-load-c');
+                },300)
+              }
+              if(indexPa < $('#me-cascade-list-wrap-container ul').size()){
+                 if(indexPa == 0){
+                   var listOne = json[index].children;
+                   for(var i = 0;i < listOne.length;i++){
+                   var str = '&lt;li class="me-cascader-menu-item me-ion-o-arrow-right" title="'+listOne[i].label+'">' + listOne[i].value + '&lt;/li&gt;';
+                   $('#me-cascade-list-wrap-container ul').eq(1).append(str)
+                 }
+              }else if(indexPa == 1){
+                 var index1 = $('#me-cascade-list-wrap-container ul').eq(0).find('.me-cascader-menu-item-active').index();
+                 var listTwo = json[index1].children[0].children;
+                 for(var i = 0;i < listTwo.length;i++){
+                   var str = '&lt;li class="me-cascader-menu-item me-ion-o-arrow-right" title="'+listTwo[i].label+'">' + listTwo[i].value + '&lt;/li&gt;';
+                 $('#me-cascade-list-wrap-container ul').eq(2).append(str)
+                 }
+              }
+           }   
+        })
+  }
+})
+					</pre>			
+				</div>
+				
+			</div>
+			<h4 class="h-title-4" id="code">示例</h4>
+				<div id="container">
+				</div>
+			<h4 class="h-title-4" id="API">API</h4>
+			<p>级联选择控件</p>
+			<table class="table table-bordered">
+            <thead>
+            <tr>
+              <td width="180">名称</td>
+              <td>说明</td>
+              <td>使用示例</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td width="180">ele<font color="red">（必传参数）</font></td>
+              <td>需渲染到指定元素</td>
+              <td>
+								<pre>me.cascader.init({<br>  ele:'#container'
+})</pre>
+							</td>
+					</tr>
+            <tr>
+              <td width="80">num</td>
+              <td>级联层级数(默认为三级)</td>
+              <td><pre>me.cascader.init({<br>  ele:'#container',<br>  num:3
+})</pre>
+			  		</td>
+            </tr>
+						<tr>
+              <td width="80">placeholder</td>
+              <td>输入框提示性文案<br>当未输入内容时，显示文字，默认为:please select</td>
+              <td><pre>me.cascader.init({<br>  ele:'#container',<br>  num:3,<br>  placeholder:'请选择省市区'
+})</pre>
+			  			</td>
+            </tr>
+						<tr>
+              <td width="80">box_style</td>
+              <td>输入框样式<br>可传参数为对象格式{'width':'300px'}或class名,<br><font color="red">注：</font>当选择添加class名时，为避免样式冲突，需在样式表里这样写eg:.me-cascade-picker-wrap.large</td>
+              <td><pre>me.cascader.init({<br>  ele:'#container',<br>  num:3,<br>  placeholder:'请选择省市区',<br>  box_style:'.large'
+})</pre>
+			  			</td>
+            </tr>
+						<tr>
+              <td width="80">list_style</td>
+              <td>列表框样式<br>功能同上，当传入为class名时，在样式表里面这样写eg:.me-cascade-list-wrap.class<br>
+							若想修改鼠标经过时的状态，则可以直接在样式表里面定义样式:.me-cascader-menu-item-active,无需传list_style参数</td>
+              <td><pre>me.cascader.init({<br>  ele:'#container',<br>  num:3,<br>  placeholder:'请选择省市区',<br>  list_style:'.class'
+})</pre>
+			  			</td>
+            </tr>
+						<tr>
+              <td width="80">cb</td>
+              <td>回调函数<br>接下来，用户可以往列表项中渲染数据了</td>
+              <td><pre>me.cascader.init({<br>  ele:'#container',<br>  num:3,<br>  placeholder:'请选择省市区',<br>  list_style:'.class',<br>  cb:function(){}
+})</pre>
+			  			</td>
+            </tr>
+            </tbody>
+          </table>
+					<p style="padding:10px 0 20px;"><b>注:</b><br>&nbsp;&nbsp; 1.控件初始化后，会跟据调用时传入的id或class自动生成此控件里输入框和下拉列表框的id，eg:所传参数为:'#container',输入框与列表框对应的id分别为："#me-cascade-picker-input-container","#me-cascade-list-wrap-container";
+					<br>&nbsp;&nbsp;2.若需获取input框的值，此时不能直接获取,<br>jQuery写法:<pre>$('#container').find('.me-cascade-picker-content').text()</pre>
+					js写法：<br><br><pre>document.getElementById('container').querySelector('.me-cascade-picker-content').textContent</pre>
+          &nbsp;&nbsp;3.根据目前调用模式来看，当点击下拉项实现ajax回调成功后，下拉项的loading状态需要调用者自己来实现将loading状态改为右箭头
+          <pre>$(this).parent().prev().find('li').removeClass('me-ion-load-c').addClass('me-ion-o-arrow-right')</pre>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+var json = [
+    {
+        "value": "zhejiang",
+        "label": "Zhejiang",
+        "children": [
+            {
+                "value": "hangzhou",
+                "label": "Hangzhou",
+                "children": [
+                    {
+                        "value": "xihu",
+                        "label": "West Lake"
+                    },
+                    {
+                        "value": "jinhua",
+                        "label": "jin hua"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "jiangsu",
+        "label": "Jiangsu",
+        "children": [
+            {
+                "value": "nanjing",
+                "label": "Nanjing",
+                "children": [
+                    {
+                        "value": "zhonghuamen",
+                        "label": "Zhong Hua Men"
+                    },
+                    {
+                        "value": "chongwenmen",
+                        "label": "chongwenmen"
+                    }
+                ]
+            }
+        ]
+    }
+]
+	me.require(['cascader&css'], 'bundle');
+	me.require.ready('bundle',function(){
+	   me.cascader.init({
+            ele: '#container',
+            num: 3,
+            placeholder: 'please select',
+            cb: function () {   
+              for(var i=0;i<json.length;i++){
+                var str = '<li class="me-cascader-menu-item me-ion-o-arrow-right" title="'+json[i].label+'">' + json[i].value + '</li>';
+                $('#me-cascade-list-wrap-container ul').eq(0).append(str)
+              }      
+              $('#me-cascade-list-wrap-container').on('click', 'li', function () {                
+                  var indexPa = $(this).parent().index();
+                  var index = $(this).index();
+                  if(indexPa<2){
+                    setTimeout(function(){
+                      $('#me-cascade-list-wrap-container li').removeClass('me-ion-load-c').addClass('me-ion-o-arrow-right');
+                      $(this).addClass('me-ion-load-c');
+                    },300)
+                  }
+                  if(indexPa < $('#me-cascade-list-wrap-container ul').size()){
+                    if(indexPa == 0){
+                      var listOne = json[index].children;
+                      for(var i = 0;i<listOne.length;i++){
+                        var str = '<li class="me-cascader-menu-item me-ion-o-arrow-right" title="'+listOne[i].label+'">' + listOne[i].value + '</li>';
+                        $('#me-cascade-list-wrap-container ul').eq(1).append(str)
+                      }
+                    }else if(indexPa == 1){
+                      var index1 = $('#me-cascade-list-wrap-container ul').eq(0).find('.me-cascader-menu-item-active').index();
+                      var listTwo = json[index1].children[0].children;
+                      for(var i = 0;i<listTwo.length;i++){
+                        var str = '<li class="me-cascader-menu-item me-ion-o-arrow-right" title="'+listTwo[i].label+'">' + listTwo[i].value + '</li>';
+                        $('#me-cascade-list-wrap-container ul').eq(2).append(str)
+                      }
+                    }
+                  }   
+              })
+            }
+        })
+	})
+	
+</script>

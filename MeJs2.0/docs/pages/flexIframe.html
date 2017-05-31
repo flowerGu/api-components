@@ -1,0 +1,850 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>flex</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="https://teststatic.mejinrong.com:4430/MeAssest/MeJS2.0/me.css">
+    <style>
+
+* {
+	box-sizing: border-box;
+	font-smoothing: antialiased;
+	text-rendering: optimizeLegibility
+}
+
+.clearfix:after,.clearfix:before {
+	content: " ";
+	display: table
+}
+
+.clearfix:after {
+	clear: both
+}
+
+body,html {
+	height: 100%;
+	width: 100%
+}
+
+body {
+	font-family: monospace;
+	max-height: 100vh;
+	font-size: 16px;
+	margin: 0;
+	line-height: 1.5;
+	color: #212121
+}
+
+body>* {
+	position: relative;
+	max-width:865px;
+	margin: 0 auto;
+}
+
+
+pre {
+	margin: 0;
+	width: 100%;
+	padding: 1rem 1.5rem;
+	background-color: #fff
+}
+
+pre .hljs {
+	font: normal 13px/1.5 Courier New,Consolas,Monaco,monospace
+}
+
+pre .hljs,pre.syntax {
+	background-color: transparent
+}
+
+pre.syntax {
+	max-width: 100%;
+	border: 0;
+	padding: 2rem 0
+}
+
+pre.syntax code {
+	width: 100%;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 1.8;
+	padding: 0
+}
+
+.syntax {
+	max-width: 100%
+}
+
+.documentation pre.syntax {
+	padding-top: 0
+}
+
+.section-intro .syntax .hljs-string {
+	color: #212121
+}
+
+code strong {
+	color: #0091ea
+}
+
+a {
+	color: #03a9f4;
+	border-bottom: 1px solid currentColor;
+	text-decoration: none
+}
+
+a.anchor,a:hover {
+	border-bottom-color: transparent
+}
+
+a.anchor {
+	position: relative;
+	margin-left: .25em;
+	width: 2em;
+	background: url(../img/icon/ic_link_black_24px.svg) 0;
+	background-size: 24px 24px;
+	opacity: 0;
+	transition: opacity .2s ease;
+	background-repeat: no-repeat;
+	text-indent: -300%;
+	display: inline-block
+}
+
+
+a>.block * {
+	text-decoration: none
+}
+
+h2:hover a.anchor,h3:hover a.anchor,th:hover a.anchor {
+	opacity: .5
+}
+
+
+
+.section {
+	margin-bottom: 5rem
+}
+
+
+.section-narrow {
+	max-width: 720px;
+	margin: 0 auto
+}
+
+.controls {
+	width: 100%;
+	margin-bottom: 0;
+	overflow-y: auto;
+	background-color: rgba(225,245,254,.5)
+}
+
+.controls,.item,.markup {
+	position: relative
+}
+
+.content {
+	background-color: #fff;
+	padding: 0;
+	margin: 0 auto;
+}
+
+.content a {
+	font-size: 13px
+}
+
+.preview {
+	padding: 1px;
+	overflow: auto;
+	height: 200px;
+	border:2px solid #ccc;
+}
+
+.markup {
+	border-top: 1px solid #eaeaea;
+	width: 100%;
+	margin-bottom: 0
+}
+
+.markup pre {
+	padding: .5rem 0
+}
+
+.output {
+	font-size: 13px
+}
+
+.show-markup .markup {
+	background-color: hsla(0,0%,100%,.9);
+	display: block
+}
+
+.show-markup .preview {
+	width: 70%;
+	width: calc(100% - 750px)
+}
+
+.syntax a {
+	text-decoration: none;
+	border-bottom: 2px solid #03a9f4
+}
+
+.syntax a:hover {
+	border-bottom-color: transparent
+}
+
+.note {
+	margin-bottom: 4rem;
+	background-color: #ffeb3b;
+	padding: .25rem 0;
+	font-size: 13px;
+	display: inline
+}
+
+.documentation {
+	font-size: 16px
+}
+
+.block {
+	border-radius: 5px;
+	box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+	margin: 1.5rem
+}
+
+.result {
+	background-color: #262626;
+	padding: 1px;
+	overflow: auto;
+	height: 350px
+}
+
+.result div {
+	background-color: #00b0ff;
+	color: hsla(0,0%,100%,.85);
+	outline: 1px dotted #262626;
+	min-width: 5em;
+	min-height: 5em;
+	max-width: 100%;
+	font-size: 1.125rem;
+	font-weight: 700;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center
+}
+
+.result div>div {
+	padding: 0
+}
+
+.section-examples {
+	max-width: 1200px;
+	margin-bottom: 0
+}
+
+.section-examples .block {
+	margin-bottom: 3rem
+}
+
+.section-examples .result {
+	height: 250px
+}
+
+.section-examples .result div {
+	font-size: 15px;
+	min-width: 4em;
+	min-height: 4em
+}
+
+.codepen div {
+	width: 100%
+}
+
+.section-intro {
+	min-height: 90vh
+}
+
+.fb {
+	margin-top: -12px;
+	margin-left: .25rem;
+	margin-right: .25rem
+}
+
+.social {
+	margin-top: 4rem
+}
+
+.section-playground {
+	min-height: 100vh;
+	max-width: 100%;
+	background-color: #e0e0e0
+}
+
+.section-playground .content {
+	margin: 3rem auto 0;
+	max-width: 960px
+}
+
+.credits {
+	font-size: 11px
+}
+
+.credits span {
+	display: inline-block;
+	padding-top: 1rem;
+	opacity: .5
+}
+
+
+.controls-group {
+	float: left;
+	padding: 1px;
+	margin-bottom: .5rem
+}
+
+.controls-group>div {
+	margin-bottom: .5rem;
+	margin-top: 0;
+	margin-left: 1px;
+	float: left
+}
+
+.controls-group-wide {
+	width:33%
+}
+
+.controls hr {
+	margin: 1rem 0 2rem;
+	clear: both;
+	float: left;
+	border: 0;
+	border-bottom: 1px solid #e0e0e0;
+	width: 100%
+}
+
+
+.control-group-size,.controls-group a {
+	padding: 1px 4px;
+	color: #03a9f4;
+	text-decoration: none;
+	display: block;
+	max-width: 12ch;
+	line-height: 20px;
+	border-bottom: 0
+}
+
+.control-group-size:hover,.controls-group a:hover {
+	color: #039be5;
+	background-color: rgba(0,178,255,.26)
+}
+
+.control-group-size:hover+.control-group-size,.controls-group a:hover+.control-group-size {
+	background-color: rgba(0,178,255,.26)
+}
+
+.control-group-size.active,.controls-group a.active {
+	color: hsla(0,0%,100%,.9);
+	border-bottom-color: #03a9f4;
+	font-weight: 700
+}
+
+.control-group-size.active+.control-group-size,.controls-group a.active+.control-group-size {
+	background-color: #03a9f4
+}
+
+.control-group-size.active:hover,.controls-group a.active:hover {
+	background-color: #03a9f4;
+	cursor: inherit
+}
+
+.controls-group-wide h5 {
+	width: 100%
+}
+
+.control-group-number>* {
+	float: left;
+	width: 25%!important;
+	text-align: center;
+	font-size: 22px
+}
+
+.items-num {
+	line-height: 24px;
+	font-size: 16px
+}
+
+.control-group-size {
+	display: inline-block;
+	float: left;
+	padding: .25rem;
+	font-size: 13px
+}
+
+.control-group-size a {
+	margin-left: -4px
+}
+
+.control-group-size a:hover {
+	background-color: transparent
+}
+
+.control-group-size>* {
+	padding: 1px 4px
+}
+
+.control-group-size input {
+	padding-left: 2px;
+	width: 6ch;
+	border: 0
+}
+
+.active+.control-group-size span {
+	color: hsla(0,0%,100%,.9)
+}[data-type=items-size] {
+	width: 100%
+}[data-type=items-size]>* {
+	width: 20%;
+	float: left
+}[data-type=items-size]>a:last-of-type {
+	text-align: left
+}
+
+.item-size>a:last-of-type {
+	margin-top: .25rem
+}
+
+#overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	display: none
+}
+
+.preview #overlay {
+	display: block
+}
+
+.select-item-align {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	font-size: 13px;
+	z-index: 5;
+	width: 100%;
+	height: auto
+}
+
+.select-item-align:hover {
+	opacity: 1
+}
+
+.select-align {
+	margin: 0 auto .25rem;
+	display: block;
+	border: 0;
+	font-family: monospace;
+	max-width: 100%
+}
+
+.grow,.shrink {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	opacity: 0;
+	transition: all .3s ease;
+	z-index: 3;
+	background-repeat: no-repeat;
+	background-size: 18px,18px,cover
+}
+
+.grow:hover,.shrink:hover {
+	opacity: 1
+}
+
+.grow:after,.shrink:after {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 7;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	font-size: 15px;
+	color: #b3e5fc;
+	width: 100%;
+	height: 100%;
+	font-weight: 700
+}
+
+.grow {
+	background-image: url(../img/icon/ic_navigate_before_white_24px.svg),url(../img/icon/ic_navigate_next_white_24px.svg),linear-gradient(90deg,#0277bd,#03a9f4,#0277bd);
+	background-position: 5%,95%
+}
+
+.item:not([self*=size-]) .grow {
+	left: 0;
+	width: 100%
+}
+
+.item:not([self*=size-]) .shrink {
+	display: none
+}
+
+.item:not([self]) .grow {
+	left: 0;
+	width: 100%
+}
+
+
+#preview~.controls-group {
+	display: none
+}
+
+#preview:checked~.controls-group {
+	display: block
+}
+
+.item,.item:after,footer {
+	text-align: center
+}
+
+.item,a.active {
+	background-color: #03a9f4
+}
+
+.item {
+	color: hsla(0,0%,100%,1);
+	outline: 1px dotted #262626;
+	outline-offset: 0;
+	min-width: 5em;
+	min-height: 5em;
+	max-width: 100%;
+	line-height: 1.5rem;
+	padding: .5rem;
+	text-align: left;
+	font-size: 1.125rem;
+	font-weight: 700;
+	transition: background-image .3s ease;
+	position: relative
+}
+
+
+
+
+	</style>
+
+	<style id="custom-css"></style>
+</head>
+
+<body class="fla">
+<div class="" id="">
+    <div class="content">
+    <!-- PREVIEW -->
+    <div class="preview item-tall">
+		<div class="item">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+		<div class="item">5</div>
+		<div class="item">6</div>
+		<div class="item" self="stretch">7</div>
+	</div>
+	<!-- CONTROLS -->
+	<div class="controls section">
+		<div class="controls-group controls-group-wide ">
+			<!--<h4>LAYOUT OPTIONS</h4>-->
+			<div data-type="direction">
+				<h5>布局主轴:</h5>
+				<a href="#">row</a>
+				<a href="#" class="">column</a>
+				<a href="#" class="">rows</a>
+				<a href="#">columns</a>
+			</div>
+			<div data-type="vertically" style="margin:0 15px;">
+				<h5>垂直方向:</h5>
+				<a href="#" class="">top</a>
+				<a href="#">center</a>
+				<a href="#">bottom</a>
+				<a href="#" class="exclude" hidden="">spread</a>
+				<a href="#" class="exclude" hidden="">justify</a>
+				<a href="#">stretch</a>
+			</div>
+			<div data-type="horizontally">
+				<h5>水平方向:</h5>
+				<a href="#">left</a>
+				<a href="#" class="">center</a>
+				<a href="#" class="">right</a>
+				<a href="#" class="exclude" style="display: block;">spread</a>
+				<a href="#" class="exclude" style="display: block;">justify</a>
+				<a href="#">stretch</a>
+			</div>
+		</div>
+		<div class="controls-group controls-group-wide " style="width:15%">
+			<div data-type="items-number">
+				<h5>增减项目:</h5>
+				<div class="control-group-number">
+					<a href="#">-</a>
+					<span class="items-num">7</span>
+					<a href="#">+</a>
+				</div>
+			</div>
+		</div>
+		<div class="controls-group controls-group-wide " style="width:52%;background:#ff6600;">
+			<h5 style="color:#fff;">代码示例：</h5>
+		    <div class="output nohighlight" style="width:100%;padding:0px; margin:0px;"><pre><code>&lt;div <strong>layout="columns center-left"</strong>&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+    &lt;div <strong>self="stretch"</strong>&gt;7&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+		</div>
+	</div>
+
+    <div class="markup section">
+            <!--<h4>MARKUP</h4>-->
+
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+	!function(t, e) {
+		function a(t) {
+			return String(t).replace(/[&<>"'\/]/g,
+			function(t) {
+				return E[t]
+			})
+		}
+		function i() {
+			if (d && d) {
+				if (d.d && (b.eq(d.d).addClass("active"), h.direction = b.eq(d.d).text(), "0" === d.d ? (C && C.hide(), k && k.show()) : "1" === d.d ? (C && C.show(), k && k.hide()) : z.find(".exclude").show(), m.d = d.d), d.h && (I.eq(d.h).addClass("active"), h.horizontally = I.eq(d.h).text(), m.h = d.h), d.v && (q.eq(d.v).addClass("active"), h.vertically = q.eq(d.v).text(), m.v = d.v), d.s && (f && g.removeClass(f), t.isNumeric(d.s) ? (z.find('[data-type="items-size"] a').eq(d.s).addClass("active"), n("item-" + z.find('[data-type="items-size"]  a').eq(d.s).text()), h.size = d.s, m.s = d.s, p = !1, u && u.text("")) : (z.find('[data-type="items-size"] a').eq(4).addClass("active"), p = decodeURI(d.s).split("/"), u ? u.text(".item { width:" + p[0] + "; height:" + p[1] + ";}") : u = t('<style id="custom-css">.item { width:' + p[0] + "; height:" + p[1] + ";} </style>").appendTo("head"), A.val(p[0]), B.val(p[1]))), d.i) {
+					var e, a, i = d.i.split(""),
+					s = d.a.split(""),
+					r = "\n",
+					c = "";
+					t.each(i,
+					function(t, i) {
+						if (e = parseInt(i) > 0 ? "size-x" + i: "", a = parseInt(s[t]) > 0 ? v[parseInt(s[t])] : "", e || a) {
+							var n = e && a ? " ": "";
+							r += '    <div class="item" self="' + e + n + a + '">' + (t + 1) + "</div>\n"
+						} else r += '    <div class="item">' + (t + 1) + "</div>\n";
+						c += i
+					}),
+					g.html(r),
+					m.i = d.i,
+					m.a = d.a
+				}
+				l = h.direction + " " + h.vertically + "-" + h.horizontally,
+				g.attr("layout", l),
+				o()
+			}
+		}
+		function n(t) {
+			g.addClass(t),
+			f = t
+		}
+		function s(e) {
+			if (history.pushState) {
+				var a = e ? e: "?" + t.param(m),
+				i = window.location.protocol + "//" + window.location.host + window.location.pathname + a;
+				window.history.pushState({
+					path: i
+				},
+				"", i),
+				r()
+			}
+		}
+		function r() {
+			var t, e = /\+/g,
+			a = /([^&=]+)=?([^&]*)/g,
+			n = function(t) {
+				return decodeURIComponent(t.replace(e, " "))
+			},
+			r = window.location.search.substring(1);
+			if (!r || /(ref=)/.test(r)) return void s("?d=0&v=1&h=1&s=0&i=000&a=000");
+			for (d = {}; t = a.exec(r);) d[n(t[1])] = n(t[2]);
+			i()
+		}
+		function o() {
+			var t = a(g[0].outerHTML.replace(/(\sclass="[a-z\s-\d]+")/gm, "")).replace(/((layout|self)=&quot;[a-z\s-\d]+&quot;)/gm, "<strong>$1</strong>").replace(/^\s*\n/gm, "");
+			y.html("<pre><code>" + t + "</code></pre>"),
+			w.text(m.i.length)
+		}
+		var l, c, d, p, u, f, h = {
+			direction: "row",
+			vertically: "center",
+			horizontally: "center",
+			size: "default",
+			items: ""
+		},
+		m = {
+			d: 0,
+			v: 1,
+			h: 1,
+			s: 3,
+			i: "000",
+			a: "000"
+		},
+		v = ["", "left", "right", "center", "top", "bottom", "stretch"],
+		g = t(".preview"),
+		y = t(".output"),
+		w = (t(".item-2"), t(".item"), t(".items-num")),
+		x = function() {
+			return document.querySelectorAll(".item").length
+		},
+		z = t(".controls"),
+		C = z.find('[data-type="vertically"] > .exclude'),
+		k = z.find('[data-type="horizontally"] > .exclude'),
+		b = z.find('[data-type="direction"] > a'),
+		q = z.find('[data-type="vertically"] > a'),
+		I = z.find('[data-type="horizontally"] > a'),
+		A = z.find('input[name="width"]'),
+		B = z.find('input[name="height"]'),
+		E = {
+			"&": "&amp;",
+			"<": "&lt;",
+			">": "&gt;",
+			'"': "&quot;",
+			"'": "&#39;",
+			"/": "&#x2F;"
+		},
+		S = t("#overlay");
+		String.prototype.replaceAt = function(t, e) {
+			return this.substr(0, t) + e + this.substr(t + e.length)
+		},
+		r(),
+		window.addEventListener("popstate",
+		function(t) {
+			r()
+		});
+		var j = function(e) {
+			var a = t(e),
+			i = e.index() - 1;
+			if (c = a.parent().attr("data-type") || a.parent().parent().attr("data-type"), a.parent().find("a").removeClass("active"), "items-number" !== c && a.addClass("active"), "direction" === c) m.d = i;
+			else if ("vertically" === c) m.v = i;
+			else if ("horizontally" === c) m.h = i;
+			else if ("items-size" === c) 3 == i ? m.s = encodeURI(A.val().replace(/ /g, "") + "/" + B.val().replace(/ /g, "")) : m.s = i;
+			else if ("items-number" === c) {
+				var n = a.text(),
+				r = x();
+				"+" === n && 20 > r ? (m.i += "0", m.a += "0") : "-" === n && r > 1 && (m.i = m.i.slice(0, -1), m.a = m.a.slice(0, -1))
+			}
+			s()
+		};
+		g.on("mouseenter", ".item",
+		function(e) {
+			t(this).prepend(S);
+			var a = t(this).index(),
+			i = S.find(".select-align option");
+			i.prop("selected", !1),
+			i.eq(parseInt(m.a[a])).prop("selected", !0)
+		}),
+		g.on("mouseleave", ".item",
+		function(t) {
+			S.detach()
+		}),
+		S.on("change", ".select-align",
+		function(e) {
+			e.preventDefault(),
+			e.stopPropagation();
+			var a = t(this).val(),
+			i = t(e.target).closest(".item"),
+			n = i.index(),
+			r = /(left|right|center|top|bottom|stretch)/g;
+			S.detach();
+			var o = i.attr("self");
+			o ? r.test(o) ? o = o.replace(r, a) : o += " " + a: o = a,
+			m.a = m.a.replaceAt(n, "" + v.indexOf(a)),
+			i.attr("self", o),
+			s()
+		}),
+		S.on("click", ".ctrl",
+		function(e) {
+			function a() {
+				n++
+			}
+			function i() {
+				n--,
+				1 > n && o[0].removeAttribute("self")
+			}
+			e.preventDefault(),
+			e.stopPropagation();
+			var n, r = t(e.target),
+			o = r.closest(".item"),
+			l = o.index(),
+			c = o.attr("self"),
+			d = r.hasClass("grow");
+			S.detach(),
+			c && /size-/g.test(c) ? (n = parseInt(c.replace("size-x", "")), n && n > 0 ? (d ? a() : i(), /(size-x\d)/g.test(c) && (c = c.replace(/(size-x\d)/g, "size-x" + n)), o.attr("self", c), m.i = m.i.replaceAt(l, "" + n)) : m.i = m.i.replaceAt(l, "0")) : (o.attr("self", "size-x1"), m.i = m.i.replaceAt(l, "1")),
+			s()
+		}),
+		S.on("mouseenter", ".ctrl",
+		function(e) {
+			t(e.target).hasClass("grow") ? t(this).parent().parent().addClass("on-grow") : t(this).parent().parent().addClass("on-shrink")
+		}),
+		S.on("mouseleave", ".ctrl",
+		function(e) {
+			t(this).hasClass("grow") ? t(this).parent().parent().removeClass("on-grow") : t(this).parent().parent().removeClass("on-shrink")
+		}),
+		z.on("click", "a",
+		function(e) {
+			e.preventDefault(),
+			j(t(this))
+		}),
+		t("button").on("click",
+		function(e) {
+			e.preventDefault(),
+			m = {
+				d: 0,
+				v: 1,
+				h: 1,
+				s: 0,
+				i: "000",
+				a: "000"
+			},
+			t(".active").removeClass("active"),
+			s()
+		}),
+		t(".button-markup").on("click",
+		function(e) {
+			e.preventDefault(),
+			t("body").toggleClass("show-markup"),
+			t("body").hasClass("show-markup") ? t(this).html('<span style="font-size: 26px;">&times;</span>') : t(this).text("Show markup")
+		}),
+		t(".section-examples").on("click", "a",
+		function(e) {
+			t(".active").removeClass("active"),
+			s(t(e.currentTarget).attr("href"))
+		});
+		var D = t(".custom-size");
+		t("input[type='text']").on("keyup",
+		function(t) {
+			D.text("Submit")
+		}),
+		D.on("click",
+		function() {
+			t(this).text("custom")
+		})
+	} (jQuery);
+
+	</script>
+</body>
+</html>
