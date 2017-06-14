@@ -1,8 +1,4 @@
-/**
- * @description 字符串相关
- * @author 应雨加
- * @time 2016/03/29
- */
+
 
 if (!String.prototype.repeat) {
   String.prototype.repeat = function (count) {

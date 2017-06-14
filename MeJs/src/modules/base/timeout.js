@@ -1,7 +1,4 @@
 /**
- * @description 界面上倒计时
- * @author 应雨加
- * @time 2016/03/30
  * @param {{dom:Object,text:String,retryTxt:String,cb:Function}} opts
  */
 export default (opts) => {

@@ -1,8 +1,4 @@
-/**
- * @description
- * @author 李林
- * @time 2016/03/29
- */
+
 
 me.browser = () => {
 	

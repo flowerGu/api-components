@@ -1,7 +1,5 @@
 /**
- * @description 验证相关
- * @author  应雨加
- * @time 2016/03/28
+
  * @module base/validate
  */
 
